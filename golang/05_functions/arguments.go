@@ -15,7 +15,9 @@ func withMap(m map[int]string) { fmt.Println("map:", m) }
 func withStruct(p struct {
 	name string
 	age  int
-}) { fmt.Println("struct:", p) }
+}) {
+	fmt.Println("struct:", p)
+}
 
 // <-chan int means "receive-only channel"
 func withChannel(ch <-chan int) {

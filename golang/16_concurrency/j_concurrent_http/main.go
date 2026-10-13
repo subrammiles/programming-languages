@@ -9,7 +9,6 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"net/http"
 	"net/http/httptest"
 	"time"
@@ -39,7 +38,6 @@ func main() {
 			defer srv.Close()
 			body, _ := getBody(srv.URL)
 			fmt.Println(body)
-			_ = io.Discard
 		}
 	}
 

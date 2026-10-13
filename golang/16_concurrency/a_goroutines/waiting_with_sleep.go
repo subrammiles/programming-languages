@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "time"
 
 /*
 A quick (but bad) fix: sleep so the goroutine gets time to run.

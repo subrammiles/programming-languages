@@ -1,17 +1,15 @@
+/*
+Arrays of union types: each element can be any of the listed types.
+ (string | number)[]   <- the parentheses matter
+ string | number[]     <- means "a string OR an array of numbers"
+*/
 
-/*This array can accept both   numbers and strings */
-const unionOfDiffrientDataTypesArray1:(string|number)[]=[];
-unionOfDiffrientDataTypesArray1.push(1)
-unionOfDiffrientDataTypesArray1.push("Subbu")
-console.log(unionOfDiffrientDataTypesArray1)
-/*This array can accept both   boolean and strings */
-const unionOfDiffrientDataTypesArray2:(string|boolean)[]=[];
-unionOfDiffrientDataTypesArray2.push(true)
-unionOfDiffrientDataTypesArray2.push("Subbu")
-console.log(unionOfDiffrientDataTypesArray2)
-/*This array can accept boolean,   numbers and strings */
-const unionOfDiffrientDataTypesArray3:(string|number|boolean)[]=[];
-unionOfDiffrientDataTypesArray3.push(true)
-unionOfDiffrientDataTypesArray3.push("Subbu")
-unionOfDiffrientDataTypesArray3.push(123)
-console.log(unionOfDiffrientDataTypesArray3)
+const ids: (string | number)[] = [];
+ids.push(1, "Subbu");
+console.log(ids);
+
+const mixed: (string | number | boolean)[] = [true, "Subbu", 123];
+for (const item of mixed) {
+  if (typeof item === "number") console.log("number", item.toFixed(1));
+  else console.log(typeof item, item);
+}

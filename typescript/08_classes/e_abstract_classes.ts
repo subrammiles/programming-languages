@@ -1,17 +1,39 @@
+/*
+Uses parameter properties (see f_parameter_properties.ts), so run with:
+  node --experimental-transform-types 08_classes/e_abstract_classes.ts
 
-//Acts as base class for anoter class
-abstract class Polygon{
-    public abstract getArea():number;
+An abstract class is a base class you can't instantiate.
+ - abstract methods have no body; subclasses MUST implement them
+ - normal methods are shared code, which an interface can't provide
+*/
 
-    public convertToString():string{
-        //child class no need to implement this methods.But in interface,it must
-        return this.getArea().toString()
-    }
+abstract class Polygon {
+  abstract getArea(): number;
+
+  describe(): string {
+    return `${this.constructor.name}: area ${this.getArea().toFixed(2)}`;
+  }
 }
 
-class Rectangle3 extends Polygon{
-    public getArea(): number {
-        throw new Error("Method not implemented.");
-    }
-    
+class Rectangle extends Polygon {
+  constructor(private width: number, private height: number) {
+    super();
+  }
+  getArea(): number {
+    return this.width * this.height;
+  }
 }
+
+class Triangle extends Polygon {
+  constructor(private base: number, private height: number) {
+    super();
+  }
+  getArea(): number {
+    return (this.base * this.height) / 2;
+  }
+}
+
+// new Polygon(); // error TS2511: Cannot create an instance of an abstract class.
+for (const p of [new Rectangle(3, 4), new Triangle(3, 4)]) console.log(p.describe());
+// Rectangle: area 12.00
+// Triangle: area 6.00

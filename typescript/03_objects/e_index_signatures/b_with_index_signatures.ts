@@ -1,31 +1,23 @@
-/*You have 2 objects that describe the salary 
-of 2 software developers:*/
+/*
+{ [key: string]: number } says: "any string keys, all values are numbers".
+Now the function accepts both salary objects and rejects bad data.
+*/
 
-const salary1V2 = {
-    baseSalary: 100_000,
-    yearlyBonus: 20_000
-  };
-  
-  const salary2V2 = {
-    contractSalary: 110_000
-  };
+const salary1 = { baseSalary: 100_000, yearlyBonus: 20_000 };
+const salary2 = { contractSalary: 110_000 };
 
-/*You want to implement a function that returns the 
-total remuneration based on the salary object: */
-
-//{ [key: string]: number } is the index signature, 
-//which tells TypeScript that salaryObject has to be an object with string type as key and number type as value.
-  function totalSalaryV2(salaryObject: { [key: string]: number }) {
-    let total = 0;
-    for (const name in salaryObject) {
-      total += salaryObject[name];
-    }
-    return total;
+function totalSalary(salaryObject: { [key: string]: number }): number {
+  let total = 0;
+  for (const name in salaryObject) {
+    total += salaryObject[name] ?? 0; // ?? 0 because a key lookup may be undefined (noUncheckedIndexedAccess)
   }
-  
-  console.log(totalSalary(salary1)); // => 120_000
-  console.log(totalSalary(salary2)); // => 110_000
+  return total;
+}
 
-  //How would you annotate salaryObject parameter of totalSalary() function to accept objects with key as string and value as number?
+console.log(totalSalary(salary1)); // 120000
+console.log(totalSalary(salary2)); // 110000
+// totalSalary({ bonus: "lots" }); // error TS2322: Type 'string' is not assignable to type 'number'.
 
-//The answer is to use an index signature!
+const wordCounts: Record<string, number> = {}; // the same idea with a utility type
+for (const w of "the cat and the hat".split(" ")) wordCounts[w] = (wordCounts[w] ?? 0) + 1;
+console.log(wordCounts); // { the: 2, cat: 1, and: 1, hat: 1 }

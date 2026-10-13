@@ -1,24 +1,19 @@
-const arrayOfNames: string[] = [];
-arrayOfNames.push("Dylan"); 
-arrayOfNames.push("Subbu"); 
-arrayOfNames.push("Trump"); 
-// arrayOfNames.push(3); // Error: Argument of type 'number' 
-//is not assignable to parameter of type 'string'.
-console.log(arrayOfNames);
+/*
+Typed arrays: every element must have the declared type.
+ string[]          (or Array<string>)
+*/
 
-const arrayOfNumbers: number[] = [];
-arrayOfNumbers.push(10)
-arrayOfNumbers.push(16)
-arrayOfNumbers.push(56)
-console.log(arrayOfNumbers);
+const names: string[] = [];
+names.push("Dylan", "Subbu", "Trump");
+// names.push(3); // error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.
+console.log(names);
 
-const arrayOfBoolean: boolean[] = [];
-arrayOfBoolean.push(true)
-arrayOfBoolean.push(false)
-arrayOfBoolean.push(true)
-console.log(arrayOfBoolean);
+const numbers: Array<number> = [10, 16, 56]; // the generic form means the same thing
+console.log(numbers.map((n) => n * 2)); // [ 20, 32, 112 ] -> n is known to be a number
 
+const flags: boolean[] = [true, false, true];
+console.log(flags.filter(Boolean).length); // 2
 
-
-
-
+// With "noUncheckedIndexedAccess" (see tsconfig.json), an index might be out of range:
+const first = names[0]; // string | undefined
+console.log(first?.toUpperCase()); // DYLAN

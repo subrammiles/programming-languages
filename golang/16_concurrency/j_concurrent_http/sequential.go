@@ -2,59 +2,35 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
+	"io"
 	"net/http"
 )
 
-func getUserAge() string {
-	response, error := http.Get("https://api.agify.io/?name=subbu")
+/*
+Calling HTTP APIs one after another: total time = the sum of every call.
+(io.ReadAll replaces the old ioutil.ReadAll, which is deprecated.)
+*/
 
-	/*If error is exists*/
-	if error != nil {
-		log.Fatalln(error)
-	}
-
-	//We Read the response body on the line below.
-	body, err := ioutil.ReadAll(response.Body)
+func getBody(url string) (string, error) {
+	resp, err := http.Get(url)
 	if err != nil {
-		log.Fatalln(err)
+		return "", err
 	}
-	//Convert the body to type string
-	sb := string(body)
-	return sb
-
+	defer resp.Body.Close() // always close the body
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	return string(body), nil
 }
 
-func getUser() string {
-	response, error := http.Get("https://randomuser.me/api/")
-
-	/*If error is exists*/
-	if error != nil {
-		log.Fatalln(error)
+func sequentialCalls(urls []string) {
+	for _, url := range urls {
+		body, err := getBody(url)
+		if err != nil {
+			fmt.Println("error:", err)
+			continue
+		}
+		fmt.Println(body)
 	}
-
-	//We Read the response body on the line below.
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	//Convert the body to type string
-	sb := string(body)
-	return sb
-
-}
-
-func main() {
-
-	output1 := getUserAge()
-
-	fmt.Println(output1)
-
-	output2 := getUser()
-
-	fmt.Println(output2)
-
-	fmt.Println("test")
-
 }

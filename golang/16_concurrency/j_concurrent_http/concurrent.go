@@ -2,67 +2,41 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
+	"sync"
 )
 
-func getUser1Age(output1Channel chan<- string) {
-	response, error := http.Get("https://api.agify.io/?name=subbu")
+/*
+The same calls in parallel: each runs in a goroutine and sends its result on a channel.
+Total time ≈ the slowest call. Results arrive in any order, so we key them by URL.
+*/
 
-	/*If error is exists*/
-	if error != nil {
-		log.Fatalln(error)
-	}
-
-	//We Read the response body on the line below.
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	//Convert the body to type string
-	sb := string(body)
-	output1Channel <- sb
-
+type response struct {
+	url  string
+	body string
+	err  error
 }
 
-func getUser2Age(output1Channel chan<- string) {
-	response, error := http.Get("https://api.agify.io/?name=subbu")
-
-	/*If error is exists*/
-	if error != nil {
-		log.Fatalln(error)
+func concurrentCalls(urls []string) {
+	results := make(chan response, len(urls))
+	var wg sync.WaitGroup
+	for _, url := range urls {
+		wg.Go(func() {
+			body, err := getBody(url)
+			results <- response{url, body, err}
+		})
 	}
+	wg.Wait()
+	close(results)
 
-	//We Read the response body on the line below.
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		log.Fatalln(err)
+	byURL := map[string]string{}
+	for r := range results {
+		if r.err != nil {
+			fmt.Println("error:", r.err)
+			continue
+		}
+		byURL[r.url] = r.body
 	}
-	//Convert the body to type string
-	sb := string(body)
-	output1Channel <- sb
-
-}
-
-func main() {
-	var output1Channel chan string
-	output1Channel = make(chan string)
-
-	go getUser1Age(output1Channel)
-
-	output1 := <-output1Channel
-
-	var output2Channel chan string
-	output2Channel = make(chan string)
-
-	go getUser2Age(output2Channel)
-
-	output2 := <-output2Channel
-
-	fmt.Println("Execution done ")
-	fmt.Println(output1)
-	fmt.Println(output2)
-	fmt.Println("test")
-
+	for _, url := range urls { // print in the original order
+		fmt.Println(byURL[url])
+	}
 }

@@ -11,6 +11,6 @@ So one goroutine can send and receive on it without deadlocking, up to the capac
 
 func bufferedBasics() {
 	ch := make(chan int, 2)
-	ch <- 12 // doesn't block: there is room
+	ch <- 12                            // doesn't block: there is room
 	fmt.Println(len(ch), cap(ch), <-ch) // 1 2 12
 }

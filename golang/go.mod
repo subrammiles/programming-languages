@@ -1,3 +1,3 @@
-module example.com/m/v2
+module github.com/subrammiles/programming-languages/golang
 
-go 1.21.6
+go 1.27

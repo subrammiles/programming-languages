@@ -1,17 +1,17 @@
 """
-The Anonymous Functions
-These types of Python functions are anonymous since we do not declare them
-
-Syntax
-
-Lambda functions have exactly one line in their syntax:
-
-lambda [argument1 [,argument2... .argumentn]] : expression  
+Lambda: a small anonymous function written in one expression.
+ lambda arguments: expression
+Good for short functions passed to sorted(), map(), filter(), max() ...
+If it needs a name or more than one line, use def instead.
 """
 
-print("Hello World");
+add = lambda a, b: a + b
+print(add(1, 2))  # 3
 
+# The usual use: as a key function
+words = ["banana", "kiwi", "apple"]
+print(sorted(words, key=lambda w: len(w)))  # ['kiwi', 'apple', 'banana']
 
-myLambdaFunc=lambda a,b:a+b;   
-
-myLambdaFunc(1,2);
+people = [{"name": "Asha", "age": 30}, {"name": "Ravi", "age": 25}]
+youngest = min(people, key=lambda p: p["age"])
+print(youngest["name"])  # Ravi

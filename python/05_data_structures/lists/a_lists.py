@@ -1,47 +1,41 @@
+"""
+Lists: ordered, mutable, allow duplicates and mixed types.  [1, "a", True]
+"""
 
 
-
-from re import L
-
-
-def method1():
-   list=[1,3]
-   list2=["a",1,True]
-   list3=["a",1,True,[1,2,3]]
-   print(list)
-   print(list2)
-   print(list3)
-
-def method2():
-    list=[1,3,5,6,7]
-    print(len(list))
-
-def method3():
-    #Slice
-    print("<<<<<<<M3>>>>>>.")
-    list2=[1,3,7,6,2]
-    list=list2.sort()
-    print(list)
-    print(list[0:2])
-    list[0]="0"
-    print(list)
-    list.append(23)
-    print(list)
-    list.pop()
-    print(list)
-    list.pop(2)
-    print(list)
+def creating():
+    print("<<<< creating >>>>")
+    numbers = [1, 3]
+    mixed = ["a", 1, True]
+    nested = ["a", 1, True, [1, 2, 3]]
+    print(numbers, mixed, nested)
+    print(len(nested))  # 4
+    print(nested[3][0])  # 1 -> index into the inner list
+    print(list(range(3)), list("hi"))  # [0, 1, 2] ['h', 'i']
 
 
-def method4():
-    #Concat
-    print("<<<<<<<M4>>>>>>.")
-    list1=[1,2,3]
-    list2=[4,5,6]
-    print(list1+list2)
-  
+def changing():
+    print("<<<< sort, change, append, pop >>>>")
+    numbers = [1, 3, 7, 6, 2]
+    # sort() sorts IN PLACE and returns None, so "numbers = numbers.sort()" is a bug
+    numbers.sort()
+    print(numbers)  # [1, 2, 3, 6, 7]
+    print(sorted([3, 1, 2], reverse=True))  # [3, 2, 1] -> sorted() returns a NEW list
 
-method1()
-method2()
-method3()
-method4()
+    numbers[0] = 0
+    print(numbers)  # [0, 2, 3, 6, 7]
+    numbers.append(23)
+    print(numbers)  # [0, 2, 3, 6, 7, 23]
+    numbers.pop()  # removes and returns the last item
+    numbers.pop(2)  # removes the item at index 2
+    print(numbers)  # [0, 2, 6, 7]
+
+
+def concatenating():
+    print("<<<< concatenating >>>>")
+    print([1, 2, 3] + [4, 5, 6])  # [1, 2, 3, 4, 5, 6]
+
+
+creating()
+changing()
+concatenating()

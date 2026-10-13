@@ -1,44 +1,51 @@
-# Function Arguments
-# The following are the types of arguments that we can use to call a function:
-
-# Default arguments:A default argument is a kind of parameter that 
-# takes as input a default value if no value is supplied for the argument when
-#  the function is called.
-
-def test1(x=40):
-    print(x);
-test1()
-test1(56)   
+"""
+Kinds of arguments
+ 1. positional      f(1, 2)
+ 2. keyword         f(x=1, y=2)   -> order does not matter
+ 3. default values  def f(x=40)
+ 4. *args           any number of positional arguments -> a tuple
+ 5. **kwargs        any number of keyword arguments    -> a dict
+"""
 
 
-# Keyword arguments:The arguments in a function called are connected to keyword arguments.
-def test2(x,y):
-    print(x);
-    print(y);
-test2(x="Subbu",y="Gabbu")
+def with_default(x=40):
+    print(x)
 
-# Required arguments:The arguments given to a function while calling in a pre-defined positional sequence are required arguments. The count of required arguments in the method call must be equal to the count of arguments provided while defining the function.
-def test3(x,y):
-    print(x);
-    print(y);
+
+with_default()  # 40
+with_default(56)  # 56
+
+
+def describe(name, city):
+    print(f"{name} lives in {city}")
+
+
+describe("Subbu", "Hyderabad")
+describe(city="Pune", name="Ravi")  # keyword arguments
 
 try:
- test3(x="Subbu") # gives an error
-except:
-    pass
+    describe(name="Subbu")  # missing a required argument
+except TypeError as e:
+    print(e)  # describe() missing 1 required positional argument: 'city'
 
-# Variable-length arguments:We can use special characters in Python functions to pass as many arguments as we want in a function. There are two types of characters that we can use for this purpose:
-#    *args -These are Non-Keyword Arguments
-#    **kwargs - These are Keyword Arguments.
 
-def method2(*args):
-    print("<<<<<<<<<Method1>>>>>>>>>") 
-    for a in args:
-        print(a);
+def total(*args):
+    print(type(args).__name__, args)
+    return sum(args)
 
-def method3(**kwargs):
-    print("<<<<<<<<<Method1>>>>>>>>>")
-    print(kwargs);        
-    
-method2(1,2,3,4,5)
-method3(fruit="apple",game="Cricket")
+
+def profile(**kwargs):
+    for key, value in kwargs.items():
+        print(f"  {key} = {value}")
+
+
+print(total(1, 2, 3, 4, 5))  # tuple (1, 2, 3, 4, 5) then 15
+profile(fruit="apple", game="cricket")
+
+
+def everything(a, b=2, *args, c, **kwargs):
+    # order: positional, defaults, *args, keyword-only, **kwargs
+    print(a, b, args, c, kwargs)
+
+
+everything(1, 2, 3, 4, c=5, d=6)  # 1 2 (3, 4) 5 {'d': 6}

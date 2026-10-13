@@ -1,21 +1,22 @@
 """
-In python, a derived class can inherit base class by
- just mentioning the base in the bracket after the derived class name. 
- Consider the following syntax to inherit a base class into the derived class.
-
- class <DerivedClassName>(<BaseClassName>):
-    ////Body
+Inheritance: a child class gets all the methods of its parent and can add its own.
+ class Child(Parent):
+Every class ultimately inherits from object.
 """
-# A class can inherit multiple classes by mentioning all of them inside the bracket. Consider the following syntax.
+
 
 class Animal:
     def speak(self):
         print("I am an Animal speaking")
 
+
 class Dog(Animal):
     def bark(self):
         print("I am a Dog barking")
 
-dog=Dog(); 
-dog.speak();
-dog.bark();      
+
+dog = Dog()
+dog.speak()  # inherited
+dog.bark()  # its own
+print(isinstance(dog, Animal), issubclass(Dog, Animal))  # True True
+print(Dog.__bases__)  # (<class '__main__.Animal'>,)

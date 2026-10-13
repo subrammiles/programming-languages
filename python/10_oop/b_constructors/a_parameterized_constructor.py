@@ -1,15 +1,19 @@
+"""
+__init__ runs automatically when an object is created.
+It sets up the object's starting state (its instance variables).
+Strictly, __init__ is the "initialiser"; __new__ creates the object, but you rarely need it.
+"""
 
-#The non-parameterized constructor uses when we do not want to manipulate the value or the constructor 
-# that has only self as an argument. 
 
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # store the arguments on the object
+        self.age = age
 
-class Test1:
-    def __init__(self,myName):
-        self.name=myName;
-        #We are adding "name" to current object.We also assiging value to it 
     def show(self):
-        print(self.name);
-        #We are using the  name from the current object that we assinged in the constracture
+        print(f"{self.name} ({self.age})")
 
-test1=Test1("Subbu");
-test1.show()
+
+p = Person("Subbu", 30)
+p.show()  # Subbu (30)
+print(p.name)  # Subbu

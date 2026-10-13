@@ -1,6 +1,17 @@
+"""
+Other import forms
+ import module as alias
+ from module import name
+ from module import name as alias
+ from module import *      (imports everything public; avoid, it hides where names came from)
+"""
+import mysquare as mysq
+from mysquare import PI
+from mysquare import square as sq
 
-# While importing a module, we can change its name too.
-import mysquare as mysq;
+print("square via alias:", mysq.square(4))  # 16
+print("square via from-import:", sq(5))  # 25
+print(PI)  # 3.14159
 
-result = mysq.square(  4  )  
-print( "By using the module square of number is: ", result )  
+import math
+print(dir(math)[-5:])  # dir() lists the names a module defines

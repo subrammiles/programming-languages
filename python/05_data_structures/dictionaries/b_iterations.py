@@ -1,16 +1,20 @@
+"""
+Looping over a dict: by keys (default), values(), or items()
+"""
+d2 = {"a": 1, "b": [1, 2, 3], "c": "123", "d": (2, True)}
 
+for key in d2:
+    print(key, end=" ")  # a b c d
+print()
 
-d2={"a":1,"b":[1,2,3],"c":"123","d":(2,True)}
-print(d2);
+for value in d2.values():
+    print(value)
 
-#We use keys for iteration
-for i in d2:
-    print(i)
+for key, value in d2.items():
+    print(key, "->", value)
 
-# Iterate using keys and print values
-for i in d2:
-    print(d2[i])
-   
-
-for key,value in d2.items():
-    print(key,value)
+# Don't add or remove keys while looping; loop over a copy instead
+for key in list(d2):
+    if key in ("a", "c"):
+        del d2[key]
+print(d2)  # {'b': [1, 2, 3], 'd': (2, True)}

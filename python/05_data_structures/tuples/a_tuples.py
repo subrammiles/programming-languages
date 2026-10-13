@@ -1,20 +1,19 @@
-
-#Tuples are immutable
-myTuple1=("A","B","C","D")
-myList1=["A","B","C","D"]
-print(myTuple1[1])
-print(myList1[1])
-
+"""
+Tuples: ordered and IMMUTABLE.  (1, 2, 3)
+Use them for fixed groups of values: coordinates, RGB colours, rows from a database,
+returning several values from a function. They can be dict keys; lists cannot.
+"""
+my_tuple = ("A", "B", "C", "D")
+my_list = ["A", "B", "C", "D"]
+print(my_tuple[1], my_list[1])  # B B
 
 try:
- myTuple1[1]="X"; # You will get this error: 'tuple' object does not support item assignment
-except:
-    pass;
+    my_tuple[1] = "X"
+except TypeError as e:
+    print(e)  # 'tuple' object does not support item assignment
 
-    
-myList1[1]="X";
-print("After changing values")
-print(myTuple1[1])
-print(myList1[1])
+my_list[1] = "X"
+print(my_tuple[1], my_list[1])  # B X
 
-
+locations = {(17.38, 78.48): "Hyderabad"}  # a tuple as a dict key
+print(locations[(17.38, 78.48)])  # Hyderabad

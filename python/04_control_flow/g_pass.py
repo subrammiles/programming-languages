@@ -1,28 +1,28 @@
+"""
+pass does nothing. Use it where Python needs a statement but you have nothing to write yet:
+an empty function, class, loop or if-branch. Without it you get an IndentationError.
+"""
 
 
+def todo():
+    pass
 
 
-a=2;
+class NotReadyYet:
+    pass
 
-def test1():
-    pass;
 
-if a==2:
-    pass;
+a = 2
+if a == 2:
+    pass  # handle this case later
 
-#If you uncommnet the pass,it gives an error.Because you should not keep empty body.So If you put pass nothing happens.
-# 
-
-list=[1,2,3,4,5]
-
-def test2():
-    for i in list:
-     if i==2:
-      pass;
-     elif i==3:
-        print("i=3")
+for i in [1, 2, 3, 4, 5]:
+    if i == 2:
+        pass
+    elif i == 3:
+        print("i = 3")
     else:
-        print("other value")
-          
+        print("other value:", i)
 
-test2()
+# ... (Ellipsis) is also often used as a placeholder:
+def also_todo(): ...

@@ -1,29 +1,37 @@
+"""
+More constructor details
+ - a class can have only ONE __init__ (a second definition replaces the first)
+ - use default arguments or @classmethod "alternative constructors" instead
+ - __init__ must return None
+"""
 
 
-class MyClass2():
-        # self indicates itself
-        def __init__(self) -> None:
-            print("This is a contrac")
-              
-myClass2=MyClass2;
+class Temperature:
+    def __init__(self, celsius=0.0):
+        self.celsius = celsius
 
-class MyClass3():
-        def __init__(self):
-            print("This is a contrac of class 3")
-              
-myClass3=MyClass3;
+    @classmethod
+    def from_fahrenheit(cls, f):  # an alternative constructor
+        return cls((f - 32) * 5 / 9)
 
-class MyClass4():
-        def __init__(self,parma1,parm2):
-            print(parma1,parm2)
+    def __repr__(self):
+        return f"Temperature({self.celsius:.1f}C)"
 
-a=2;
-class MyClass5():
-       
-        def __init__(self,parma1,parm2):
-            self.a=parm2;  
-        def printAValue():
-            print(a);          
-print(a)       
-myClass5=MyClass5(100,200);
-print(a) 
+
+print(Temperature(25))  # Temperature(25.0C)
+print(Temperature.from_fahrenheit(98.6))  # Temperature(37.0C)
+
+
+class Overwritten:
+    def __init__(self):
+        print("first __init__")
+
+    def __init__(self, x):  # replaces the one above
+        print("second __init__ with", x)
+
+
+Overwritten(1)
+try:
+    Overwritten()
+except TypeError as e:
+    print("TypeError:", e)

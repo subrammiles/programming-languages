@@ -1,13 +1,26 @@
+"""
+A constructor that takes only self, and one with default values.
+If a class has no __init__, Python uses an empty default one.
+"""
 
-#The non-parameterized constructor uses when we do not want to manipulate the value or the constructor 
-# that has only self as an argument. 
 
-
-class Test1:
+class Logger:
     def __init__(self):
-        print("This is a constracture call")
-    def show(self,name):
-        print(name);
+        print("Logger created")
+        self.messages = []
 
-test1=Test1();
-test1.show("Subbu")
+    def log(self, message):
+        self.messages.append(message)
+
+
+class Account:
+    def __init__(self, owner, balance=0):  # default value -> optional argument
+        self.owner = owner
+        self.balance = balance
+
+
+log = Logger()  # Logger created
+log.log("started")
+print(log.messages)  # ['started']
+
+print(Account("Asha").balance, Account("Ravi", 500).balance)  # 0 500

@@ -1,38 +1,22 @@
-
-
+"""
+List operators: * repetition, + concatenation, in membership, len(), iteration
+"""
 l1 = [1, 2, 3, 4]
 l2 = [5, 6, 7, 8]
 
-#Repetition	The repetition operator enables the list elements to be repeated multiple times.	
-print(l1*2) 
-#[1, 2, 3, 4, 1, 2, 3, 4]
+print(l1 * 2)  # [1, 2, 3, 4, 1, 2, 3, 4]
+print(l1 + l2)  # [1, 2, 3, 4, 5, 6, 7, 8]
+print(2 in l1, 100 in l1)  # True False
 
-# Concatenation	It concatenates the list mentioned on either side of the operator.	
-print(l1+l2) 
-#[1, 2, 3, 4, 5, 6, 7, 8]
+for i in l1:
+    print(i, end=" ")
+print()
 
-
-
-#Membership	It returns true if a particular item exists in a particular list otherwise false.	
-
-print(2 in l1) #prints True.
-print(100 in l1) # prints False
-
-
-
-# Iteration	The for loop is used to iterate over the list elements.	
-for i in l1: 
-    print(i)
-
-4
-
-# Length	It is used to get the length of the list	
-print(len(l1)) 
-
-
-# trying to access element index more than the length of a list  
+print(len(l1))  # 4
 
 try:
     print(l1[10])
-except Exception as e:
-   print(e);  
+except IndexError as e:
+    print(e)  # list index out of range
+
+print(min(l1), max(l1), sum(l1))  # 1 4 10

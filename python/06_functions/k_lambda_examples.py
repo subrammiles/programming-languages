@@ -1,23 +1,22 @@
+"""
+Lambda with filter() and map(), and the more Pythonic comprehension equivalents.
+filter(fn, items) keeps items where fn(item) is truthy.
+map(fn, items) applies fn to every item.
+Both return lazy iterators; wrap in list() to see the values.
+"""
+numbers = [34, 12, 64, 55, 75, 13, 63]
 
+odd = list(filter(lambda n: n % 2 != 0, numbers))
+print(odd)  # [55, 75, 13, 63]
+print([n for n in numbers if n % 2 != 0])  # same, usually preferred
 
-# Lambda Function with filter
-# Code to filter odd numbers from a given list  
-list_ = [34, 12, 64, 55, 75, 13, 63]  
-  
-odd_list = list(filter( lambda num: (num % 2 != 0) , list_ ))  
-  
-print(odd_list)  
+squared = list(map(lambda n: n ** 2, [2, 4, 5]))
+print(squared)  # [4, 16, 25]
+print([n ** 2 for n in [2, 4, 5]])  # same
 
+print(list(map(str.upper, ["a", "b"])))  # ['A', 'B'] -> any function works with map
+print(list(map(lambda a, b: a + b, [1, 2], [10, 20])))  # [11, 22]
 
-#Map
-numbers_list = [2, 4, 5, 1, 3, 7, 8, 9, 10]  
-  
-squared_list = list(map( lambda num: num ** 2 , numbers_list ))  
-
-
-#List comprehension
-#Code to calculate square of each number of list using list comprehension  
-squares = [lambda num = num: num ** 2 for num in range(0, 11)]  
-   
-for square in squares:  
-    print( square(), end = " ")  
+# A list of lambdas: capture n as a default so each one keeps its own value
+square_funcs = [lambda n=n: n ** 2 for n in range(5)]
+print([f() for f in square_funcs])  # [0, 1, 4, 9, 16]

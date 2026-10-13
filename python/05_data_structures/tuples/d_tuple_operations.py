@@ -1,19 +1,17 @@
+"""
+Accessing, iterating, and out-of-range errors
+"""
+t = (1, 2, 3, 4, 5, 6)
 
-
-
-t=(1,2,3,4,5,6)
-# Accessing elements
-
-print(t[1]);
-
-# Iterating 
+print(t[1])  # 2
 
 for i in t:
-    print(i);
-
-# trying to access element index more than the length of a tuple  
+    print(i, end=" ")
+print()
 
 try:
     print(t[10])
-except Exception as e:
-   print(e);  
+except IndexError as e:
+    print(e)  # tuple index out of range
+
+print(t + (7,), len(t), 3 in t)  # (1, 2, 3, 4, 5, 6, 7) 6 True

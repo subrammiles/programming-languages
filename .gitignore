@@ -45,3 +45,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+# Files written by the Java examples
+java/**/xyz.txt
+java/**/subbu.txt
+java/out/

@@ -16,7 +16,7 @@ public class E_ModernStringMethods {
 
         // strip() understands Unicode whitespace, trim() only removes chars <= ' '
         String s = "  hello  ";
-        System.out.println("[" + s.trim() + "]");  // [ hello ] (em-space not removed)
+        System.out.println("[" + s.trim() + "]");  // [  hello  ] (the em-spaces at both ends are kept)
         System.out.println("[" + s.strip() + "]"); // [hello]
 
         System.out.println("ab".repeat(3)); // ababab

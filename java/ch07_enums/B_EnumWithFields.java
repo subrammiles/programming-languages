@@ -48,7 +48,7 @@ public class B_EnumWithFields {
         }
         // MERCURY  gravity = 3.70 m/s2
         // EARTH    gravity = 9.80 m/s2
-        // JUPITER  gravity = 24.80 m/s2
+        // JUPITER  gravity = 24.81 m/s2
 
         System.out.println(Coin.QUARTER.cents());  // 25
         System.out.println(Coin.fromCents(10));    // DIME

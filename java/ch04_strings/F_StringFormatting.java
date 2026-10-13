@@ -26,7 +26,7 @@ public class F_StringFormatting {
 
         // Locale-aware currency
         System.out.println(NumberFormat.getCurrencyInstance(Locale.US).format(1234.5));          // $1,234.50
-        System.out.println(NumberFormat.getCurrencyInstance(Locale.of("en", "IN")).format(123456.5)); // ₹1,23,456.50
+        System.out.println(NumberFormat.getCurrencyInstance(Locale.of("en", "IN")).format(123456.5)); // ₹123,456.50
 
         // String.join and StringBuilder for building strings in a loop
         System.out.println(String.join(", ", "a", "b", "c")); // a, b, c

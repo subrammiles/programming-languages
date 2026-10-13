@@ -33,9 +33,9 @@ public class D_Formatting {
             System.out.println("could not parse: " + e.getParsedString());
         }
 
-        // The YYYY bug: 2026-12-28 is in "week year" 2027
-        LocalDate lateDec = LocalDate.of(2026, 12, 28);
-        System.out.println(lateDec.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // 2026-12-28
-        System.out.println(lateDec.format(DateTimeFormatter.ofPattern("YYYY-MM-dd", Locale.UK))); // 2027-12-28 !
+        // The YYYY bug: Monday 2025-12-29 belongs to week 1 of "week year" 2026
+        LocalDate lateDec = LocalDate.of(2025, 12, 29);
+        System.out.println(lateDec.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // 2025-12-29
+        System.out.println(lateDec.format(DateTimeFormatter.ofPattern("YYYY-MM-dd", Locale.UK))); // 2026-12-29 !
     }
 }

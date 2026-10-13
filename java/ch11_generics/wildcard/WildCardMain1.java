@@ -1,4 +1,4 @@
-package c_advanced.e_generics.wildcard;
+package ch11_generics.wildcard;
 
 public class WildCardMain1 {
 	

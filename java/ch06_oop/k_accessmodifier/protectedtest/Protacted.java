@@ -1,4 +1,4 @@
-package oops.k_accessmodifier.protectedtest;
+package ch06_oop.k_accessmodifier.protectedtest;
 
 /*protected  is not applicable to classes*/
 public class Protacted {

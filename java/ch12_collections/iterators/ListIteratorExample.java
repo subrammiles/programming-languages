@@ -1,4 +1,4 @@
-package d_collections.iterators;
+package ch12_collections.iterators;
 
 import java.util.*;
 import java.util.List;

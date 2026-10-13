@@ -1,4 +1,4 @@
-package basics.e_strings.mutable_clases;
+package ch04_strings.mutable_classes;
 
 
 import java.util.GregorianCalendar;

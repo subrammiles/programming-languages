@@ -1,4 +1,4 @@
-package oops.a_class_and_object;
+package ch06_oop.a_class_and_object;
 
 public class C_AnonymousClass {
 

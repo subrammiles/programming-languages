@@ -1,4 +1,4 @@
-package c_advanced.iostreams;
+package ch17_io_and_files.a_io_streams;
 
 
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package oops.j_keywords.finaltest;
+package ch06_oop.j_keywords.finaltest;
 
 public class BlankFinalVariable {
 

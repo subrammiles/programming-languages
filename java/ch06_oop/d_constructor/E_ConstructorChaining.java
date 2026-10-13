@@ -1,4 +1,4 @@
-package oops.d_consructor;
+package ch06_oop.d_constructor;
 
 
 /*We can have multiple Constructor, To call another Constructor in the same class use this()*/

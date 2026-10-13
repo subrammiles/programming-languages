@@ -1,5 +1,4 @@
-
-package a_basics.a1_helloworld;
+package ch01_getting_started;
 
 public class HelloWorld{
 	public static void main(String[] args) {

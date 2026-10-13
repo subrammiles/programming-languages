@@ -1,4 +1,4 @@
-package oops.k_accessmodifier.default1;
+package ch06_oop.k_accessmodifier.default1;
 
 //public class DefaultTest2 {
 //

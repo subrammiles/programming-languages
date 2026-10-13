@@ -1,4 +1,4 @@
-package c_advanced.f_lambdaexpressions;
+package ch13_lambdas;
 
 import java.lang.FunctionalInterface;
 

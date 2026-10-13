@@ -1,8 +1,6 @@
+package ch06_oop.k_accessmodifier.protectedtest.newp;
 
-package oops.k_accessmodifier.protectedtest.newp;
-
-
-import oops.k_accessmodifier.protectedtest.Test1;
+import ch06_oop.k_accessmodifier.protectedtest.Test1;
 
 public class Protacted2 extends Test1 {
 	public static void main(String[] args) {

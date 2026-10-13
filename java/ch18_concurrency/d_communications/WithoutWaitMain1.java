@@ -1,4 +1,4 @@
-package e_threads.d_communications;
+package ch18_concurrency.d_communications;
 
 //AccountBalace contaisn amount.One Threads produces data and another thread need to use thata dat
  class AccountBalance {

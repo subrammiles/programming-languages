@@ -1,4 +1,4 @@
-package b_oops.a_object;
+package ch06_oop.a_class_and_object;
 
 public class ObjectEx {
 

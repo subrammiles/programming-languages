@@ -1,4 +1,4 @@
-package e_threads.locks;
+package ch18_concurrency.h_locks;
 
 public class Resource {
 

@@ -1,4 +1,4 @@
-package c_advanced.annotations;
+package ch20_annotations;
 
 public class MySuppressWarningsAnnotation {
 	  @Deprecated

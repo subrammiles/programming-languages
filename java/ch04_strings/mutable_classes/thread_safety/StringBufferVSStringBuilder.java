@@ -1,4 +1,4 @@
-package a_basics.strings.stringbufferandbuiulder.threadsafety;
+package ch04_strings.mutable_classes.thread_safety;
 
 /**
  * Run this program a couple of times. We see that the StringBuilder does not

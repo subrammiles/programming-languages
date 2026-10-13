@@ -1,4 +1,4 @@
-package c_advanced.singleton;
+package ch22_design_patterns.singleton;
 
 public class SingletonExample {
 	// private field that refers to the object

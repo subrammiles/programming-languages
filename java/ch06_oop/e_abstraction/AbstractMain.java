@@ -1,4 +1,4 @@
-package b_oops.abstraction.basic1;
+package ch06_oop.e_abstraction;
 
 public class AbstractMain {
 	

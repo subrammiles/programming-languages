@@ -1,4 +1,4 @@
-package e_threads.synchronization;
+package ch18_concurrency.g_synchronization;
 
 public class CounterExampleSynchronization {
 	

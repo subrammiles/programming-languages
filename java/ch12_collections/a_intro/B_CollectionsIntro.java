@@ -1,4 +1,4 @@
-package collections.a_intro;
+package ch12_collections.a_intro;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

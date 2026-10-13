@@ -1,4 +1,4 @@
-package oops.h_polymorphism;
+package ch06_oop.h_polymorphism;
 
 
 public class Polymorphism {

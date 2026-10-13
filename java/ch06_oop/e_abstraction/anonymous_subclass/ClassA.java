@@ -1,4 +1,4 @@
-package b_oops.abstraction.basic1.AnonymousSubclass;
+package ch06_oop.e_abstraction.anonymous_subclass;
 
 public  abstract class ClassA {
 

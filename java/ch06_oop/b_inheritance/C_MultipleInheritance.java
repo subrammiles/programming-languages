@@ -1,4 +1,4 @@
-package oops.b_inhertience;
+package ch06_oop.b_inheritance;
 
 /*
 A class can extends only 1 class.

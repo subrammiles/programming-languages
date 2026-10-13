@@ -1,4 +1,4 @@
-package oops.b_inhertience;
+package ch06_oop.b_inheritance;
 
 
 /*MultipleInheritance is possible with interfaces but not with the classes but not with the */

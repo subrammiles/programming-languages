@@ -1,4 +1,4 @@
-package c_advanced.sockets;
+package ch19_networking.sockets;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

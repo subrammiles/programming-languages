@@ -1,4 +1,4 @@
-package b_oops.c_methodOverriding;
+package ch06_oop.b_inheritance.method_overriding;
 
 /*
  

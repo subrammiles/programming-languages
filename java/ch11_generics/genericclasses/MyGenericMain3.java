@@ -1,4 +1,4 @@
-package c_advanced.e_generics.genericclasses;
+package ch11_generics.genericclasses;
 
 public class MyGenericMain3<T> {
 	   T t;

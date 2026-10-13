@@ -1,4 +1,4 @@
-package oops.c_method_overloading;
+package ch06_oop.c_method_overloading;
 
 public class ReturnTypeFail {
 //

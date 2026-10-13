@@ -1,4 +1,4 @@
-package oops.j_keywords.thisKeyword;
+package ch06_oop.j_keywords.thisKeyword;
 
 public class InvokeCurrentClassConstructor {
 

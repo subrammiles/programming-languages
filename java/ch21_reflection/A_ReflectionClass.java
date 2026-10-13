@@ -1,4 +1,4 @@
-package c_advanced.reflection;
+package ch21_reflection;
 
 public class A_ReflectionClass {
 

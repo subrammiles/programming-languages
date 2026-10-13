@@ -1,4 +1,4 @@
-package oops.e_abstraction.examples.bike;
+package ch06_oop.e_abstraction.examples.bike;
 
 public class B_Honda extends A_Bike {
 

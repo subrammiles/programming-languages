@@ -1,4 +1,4 @@
-package oops.j_keywords.instanceoftest;
+package ch06_oop.j_keywords.instanceoftest;
 
 public class InstanceOf {
 

@@ -1,5 +1,5 @@
+package ch01_getting_started;
 
-package a_basics.a1_helloworld;
 /* */
 public class ClassWithNoMainMethod {
 

@@ -1,4 +1,4 @@
-package oops.j_keywords.superkeyword;
+package ch06_oop.j_keywords.superkeyword;
 
 /*
  We can call the parent fields or methods using super keyword

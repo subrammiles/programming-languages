@@ -1,4 +1,4 @@
-package oops.f_interfaces;
+package ch06_oop.f_interfaces;
 
 
 /*A class can implements only the public interfaces but not other

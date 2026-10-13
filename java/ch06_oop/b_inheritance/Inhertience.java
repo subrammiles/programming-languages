@@ -1,4 +1,4 @@
-package b_oops.b_inhertience;
+package ch06_oop.b_inheritance;
 
 
 

@@ -1,4 +1,4 @@
-package d_collections.queues;
+package ch12_collections.queues;
 
 
 import java.util.ArrayDeque;

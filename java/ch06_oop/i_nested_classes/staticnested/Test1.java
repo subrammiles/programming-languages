@@ -1,4 +1,4 @@
-package oops.i_nested_classes.staticnested;
+package ch06_oop.i_nested_classes.staticnested;
 
 public class Test1 {
 

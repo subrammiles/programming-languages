@@ -1,13 +1,12 @@
-package e_threads.executors;
+package ch18_concurrency.j_executors;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-
-import e_threads.executors.A_Executor.Task1;
-import e_threads.executors.A_Executor.Task2;
+import ch18_concurrency.j_executors.A_Executor.Task1;
+import ch18_concurrency.j_executors.A_Executor.Task2;
 
 /*
  1.The Callable interface is a generic interface.

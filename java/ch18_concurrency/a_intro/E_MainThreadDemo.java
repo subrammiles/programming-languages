@@ -1,4 +1,4 @@
-package e_threads.a_intro;
+package ch18_concurrency.a_intro;
 
 
 //You can rename the main thread

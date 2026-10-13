@@ -1,4 +1,4 @@
-package oops.f_interfaces.functional_interfaces;
+package ch06_oop.f_interfaces.functional_interfaces;
 
 public class B_AnonymousFI {
 

@@ -1,4 +1,4 @@
-package b_oops.encapsulation;
+package ch06_oop.m_encapsulation;
 
 /*
  A Java class which is a fully encapsulated class. 

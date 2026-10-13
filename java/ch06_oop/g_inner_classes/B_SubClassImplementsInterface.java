@@ -1,4 +1,4 @@
-package oops.g_inner_classes;
+package ch06_oop.g_inner_classes;
 
 interface PolygonInterface {
 	public void display();

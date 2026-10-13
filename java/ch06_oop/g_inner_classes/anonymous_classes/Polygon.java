@@ -1,4 +1,4 @@
-package b_oops.nestedclasses.anonymousClass;
+package ch06_oop.g_inner_classes.anonymous_classes;
 
 class Polygon {
 	public void display() {

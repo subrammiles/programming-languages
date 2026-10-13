@@ -1,4 +1,4 @@
-package a_basics.arrays;
+package ch05_arrays;
 
 import java.util.Arrays;
 

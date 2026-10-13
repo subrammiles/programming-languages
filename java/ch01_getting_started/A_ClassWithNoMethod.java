@@ -1,4 +1,4 @@
-package basics.a_hello;
+package ch01_getting_started;
 
 
 /*This file is not runnable because there is no main method*/

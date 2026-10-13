@@ -1,4 +1,4 @@
-package a_basics.c_exceptionhandling;
+package ch10_exception_handling;
 
 
 import java.io.*;

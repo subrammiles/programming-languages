@@ -1,4 +1,4 @@
-package c_advanced.f_lambdaexpressions;
+package ch13_lambdas;
 
 
 /*This class helps to reverse the string */

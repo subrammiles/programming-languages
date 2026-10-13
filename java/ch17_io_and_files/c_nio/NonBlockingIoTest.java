@@ -1,4 +1,4 @@
-package c_advanced.nonblockingio;
+package ch17_io_and_files.c_nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

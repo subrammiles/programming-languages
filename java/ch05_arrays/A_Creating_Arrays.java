@@ -1,4 +1,4 @@
-package basics.f_arrays;
+package ch05_arrays;
 
 public class A_Creating_Arrays {
 

@@ -1,4 +1,4 @@
-package basics.b_varibles;
+package ch02_variables_and_data_types.a_variables;
 
 public class B_Mutability {
 

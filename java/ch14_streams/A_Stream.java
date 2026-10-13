@@ -1,4 +1,4 @@
-package c_advanced.java8streams;
+package ch14_streams;
 
 import java.util.Arrays;
 import java.util.stream.Stream;

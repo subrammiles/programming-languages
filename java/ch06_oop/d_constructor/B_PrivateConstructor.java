@@ -1,4 +1,4 @@
-package oops.d_consructor;
+package ch06_oop.d_constructor;
 
 /*If you make any class constructor private,
 you cannot create the instance of that class from outside the class.*/

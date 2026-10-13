@@ -1,6 +1,6 @@
-package b_oops.e_interfaceexamples.functionalinterface;
+package ch06_oop.f_interfaces.functional_interfaces.more_examples;
 
-import b_oops.e_interfaceexamples.functionalinterface.MyFunctionalInterface2.Test1;
+import ch06_oop.f_interfaces.functional_interfaces.more_examples.MyFunctionalInterface2.Test1;
 
 public class FunctionalInterfaceLambda {
 

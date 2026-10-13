@@ -1,4 +1,4 @@
-package oops.f_interfaces;
+package ch06_oop.f_interfaces;
 
 
 /*MultipleInheritance is possible with interfaces but not with the classes but not with the */

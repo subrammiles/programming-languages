@@ -1,4 +1,4 @@
-package oops.f_interfaces.examples.example1.withoutinterface;
+package ch06_oop.f_interfaces.examples.example1.withoutinterface;
 
 public class DeskTopPhone1 {
 

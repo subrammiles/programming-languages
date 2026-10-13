@@ -1,6 +1,6 @@
-package e_threads;
+package ch18_concurrency.b_thread_methods;
 
-public class SleepMethod extends Thread {
+public class SleepInsideThread extends Thread {
 	public void run() {
 		try {
 			Thread.sleep(500);
@@ -12,7 +12,7 @@ public class SleepMethod extends Thread {
 	}
 
 	public static void main(String args[]) {
-		SleepMethod t1 = new SleepMethod();
+		SleepInsideThread t1 = new SleepInsideThread();
 		t1.start();
 		
 		

@@ -1,4 +1,4 @@
-package f_other.streams;
+package ch14_streams;
 
 
 /*

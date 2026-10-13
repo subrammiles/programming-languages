@@ -1,4 +1,4 @@
-package c_advanced.sockets.threads;
+package ch19_networking.sockets.threads;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

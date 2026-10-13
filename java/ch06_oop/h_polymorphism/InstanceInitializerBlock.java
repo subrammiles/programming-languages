@@ -1,4 +1,4 @@
-package b_oops.Polymorphism;
+package ch06_oop.h_polymorphism;
 
 public class InstanceInitializerBlock {
 

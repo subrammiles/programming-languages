@@ -1,4 +1,4 @@
-package e_threads.interrupting;
+package ch18_concurrency.i_interrupting;
 
 public class InterruptingThread extends Thread {
 

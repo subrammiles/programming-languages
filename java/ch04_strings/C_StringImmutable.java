@@ -1,4 +1,4 @@
-package basics.e_strings;
+package ch04_strings;
 
 
 /*

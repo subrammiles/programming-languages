@@ -1,4 +1,4 @@
-package b_oops.constructor.chaning;
+package ch06_oop.d_constructor;
 
 /*To */
 

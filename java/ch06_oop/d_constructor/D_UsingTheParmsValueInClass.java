@@ -1,4 +1,4 @@
-package oops.d_consructor;
+package ch06_oop.d_constructor;
 
 public class D_UsingTheParmsValueInClass {
 

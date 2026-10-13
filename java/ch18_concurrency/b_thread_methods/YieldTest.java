@@ -1,4 +1,4 @@
-package e_threads.b_thread_methods;
+package ch18_concurrency.b_thread_methods;
 
 
 /*

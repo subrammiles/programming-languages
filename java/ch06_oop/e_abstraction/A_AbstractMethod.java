@@ -1,4 +1,4 @@
-package oops.e_abstraction;
+package ch06_oop.e_abstraction;
 
 
 /*abstract method should be declayred inside a abstract class only*/

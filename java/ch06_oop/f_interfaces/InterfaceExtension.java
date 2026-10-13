@@ -1,4 +1,4 @@
-package b_oops.e_interfaceexamples.interfaceproperties;
+package ch06_oop.f_interfaces;
 
 /*Interface can extends n number of interfaces*/
 public class InterfaceExtension {

@@ -1,4 +1,4 @@
-package c_advanced.e_generics;
+package ch11_generics;
 
 public class BoundedTypes {
 

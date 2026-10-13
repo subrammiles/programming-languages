@@ -1,4 +1,4 @@
-package basics.a_hello;
+package ch01_getting_started;
 
 public class C_MainMethods {
 

@@ -1,4 +1,4 @@
-package basics.c_datatypes;
+package ch02_variables_and_data_types.b_data_types;
 
 public class C_NullValue {
 

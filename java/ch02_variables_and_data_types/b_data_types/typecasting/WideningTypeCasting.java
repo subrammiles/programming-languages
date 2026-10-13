@@ -1,4 +1,4 @@
-package basics.c_datatypes.typecasting;
+package ch02_variables_and_data_types.b_data_types.typecasting;
 
 public class WideningTypeCasting {
 

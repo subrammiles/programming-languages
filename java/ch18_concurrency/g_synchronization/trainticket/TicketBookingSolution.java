@@ -1,4 +1,4 @@
-package e_threads.synchronization.trainticket;
+package ch18_concurrency.g_synchronization.trainticket;
 
 //Program to show that with synchronization no problems will happen when  2 passengers try to book train ticket, dat too when only 1 ticket was available>
 public class TicketBookingSolution {

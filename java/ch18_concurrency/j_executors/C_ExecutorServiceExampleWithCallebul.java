@@ -1,4 +1,4 @@
-package e_threads.executors;
+package ch18_concurrency.j_executors;
 
 import java.util.HashSet;
 import java.util.List;

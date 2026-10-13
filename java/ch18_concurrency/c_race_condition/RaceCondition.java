@@ -1,4 +1,4 @@
-package e_threads.c_racecondiion;
+package ch18_concurrency.c_race_condition;
 
 
 class Counter implements Runnable {

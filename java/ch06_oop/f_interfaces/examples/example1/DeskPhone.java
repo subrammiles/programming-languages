@@ -1,4 +1,4 @@
-package oops.f_interfaces.examples.example1;
+package ch06_oop.f_interfaces.examples.example1;
 
 
 public class DeskPhone implements ITelePhone {

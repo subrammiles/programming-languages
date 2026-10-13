@@ -1,4 +1,4 @@
-package e_threads.locks;
+package ch18_concurrency.h_locks;
 
 
 import java.util.concurrent.TimeUnit;

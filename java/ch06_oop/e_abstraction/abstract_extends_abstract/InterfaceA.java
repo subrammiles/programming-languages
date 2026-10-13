@@ -1,4 +1,4 @@
-package b_oops.abstraction.basic1.abstractextendsabstract;
+package ch06_oop.e_abstraction.abstract_extends_abstract;
 
 interface InterfaceA {
 	void a();

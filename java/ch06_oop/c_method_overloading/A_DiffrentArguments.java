@@ -1,4 +1,4 @@
-package oops.c_method_overloading;
+package ch06_oop.c_method_overloading;
 
 
 /*Method overloading by changing datatype of argument*/

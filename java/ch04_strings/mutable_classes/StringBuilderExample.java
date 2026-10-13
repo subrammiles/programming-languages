@@ -1,4 +1,4 @@
-package a_basics.strings.stringbufferandbuiulder;
+package ch04_strings.mutable_classes;
 
 /*
  

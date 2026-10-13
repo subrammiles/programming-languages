@@ -1,4 +1,4 @@
-package e_threads.deamon;
+package ch18_concurrency.f_daemon;
 
 public class MyDaemon implements Runnable {
 	public void run() {

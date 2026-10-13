@@ -1,4 +1,4 @@
-package oops.i_nested_classes.nonstatic;
+package ch06_oop.i_nested_classes.nonstatic;
 
 public class OuterClass {
 

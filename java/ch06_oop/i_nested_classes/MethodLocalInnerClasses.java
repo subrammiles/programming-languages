@@ -1,4 +1,4 @@
-package oops.i_nested_classes;
+package ch06_oop.i_nested_classes;
 
 public class MethodLocalInnerClasses {
 

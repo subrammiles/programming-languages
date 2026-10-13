@@ -1,3 +1,5 @@
+package ch05_arrays;
+
 public class A_Arrays {
 
 	public static void method1() {

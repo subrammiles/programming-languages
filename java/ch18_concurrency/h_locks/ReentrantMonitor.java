@@ -1,4 +1,4 @@
-package e_threads;
+package ch18_concurrency.h_locks;
 
 public class ReentrantMonitor {
 	public static void main(String args[]) {

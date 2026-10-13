@@ -1,4 +1,4 @@
-package basics.f_arrays;
+package ch05_arrays;
 
 import java.util.Arrays;
 

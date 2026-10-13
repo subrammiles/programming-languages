@@ -1,4 +1,4 @@
-package oops.b_inhertience.method_overriding;
+package ch06_oop.b_inheritance.method_overriding;
 
 
 

@@ -1,4 +1,4 @@
-package e_threads.synchronization.trainticket;
+package ch18_concurrency.g_synchronization.trainticket;
 
 /*
  RACE CONDITION PROBLEM : 1 ticket was booked by 2 passengers.

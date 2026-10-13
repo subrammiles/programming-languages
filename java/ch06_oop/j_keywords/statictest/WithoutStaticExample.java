@@ -1,4 +1,4 @@
-package oops.j_keywords.statictest;
+package ch06_oop.j_keywords.statictest;
 
 public class WithoutStaticExample {
 

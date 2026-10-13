@@ -1,4 +1,4 @@
-package c_advanced.e_generics.genericmethods;
+package ch11_generics.genericmethods;
 
 public class MyGenericMethod1 {
 

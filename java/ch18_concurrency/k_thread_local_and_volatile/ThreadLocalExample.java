@@ -1,4 +1,4 @@
-package e_threads;
+package ch18_concurrency.k_thread_local_and_volatile;
 
 
 import java.text.SimpleDateFormat;

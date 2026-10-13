@@ -1,4 +1,4 @@
-package oops.j_keywords.superkeyword;
+package ch06_oop.j_keywords.superkeyword;
 
 /*
 If we don't add any default constracture we must invoke the super class constracture with super keyword

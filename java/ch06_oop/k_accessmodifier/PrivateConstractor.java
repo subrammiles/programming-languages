@@ -1,4 +1,4 @@
-package oops.k_accessmodifier;
+package ch06_oop.k_accessmodifier;
 
 /*If you make any class constructor private, you cannot create the instance of that class from outside the class.*/
 

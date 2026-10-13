@@ -1,4 +1,4 @@
-package b_oops.e_interfaceexamples.functionalinterface;
+package ch06_oop.f_interfaces.functional_interfaces;
 
 
 /*

@@ -1,4 +1,4 @@
-package c_advanced.serializationexamples;
+package ch17_io_and_files.d_serialization;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

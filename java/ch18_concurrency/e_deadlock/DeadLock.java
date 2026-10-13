@@ -1,4 +1,4 @@
-package e_threads.deadlock;
+package ch18_concurrency.e_deadlock;
 
 public class DeadLock {
 

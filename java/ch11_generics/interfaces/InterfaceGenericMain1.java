@@ -1,4 +1,4 @@
-package c_advanced.e_generics.interfaces;
+package ch11_generics.interfaces;
 
 public class InterfaceGenericMain1 implements Interface1 {
 

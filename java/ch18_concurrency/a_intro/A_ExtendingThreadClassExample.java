@@ -1,4 +1,4 @@
-package e_threads.a_intro;
+package ch18_concurrency.a_intro;
 
 
 /*One way of creating a thread is extending Thread class*/

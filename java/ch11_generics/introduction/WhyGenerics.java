@@ -1,4 +1,4 @@
-package c_advanced.e_generics.introduction;
+package ch11_generics.introduction;
 
 import java.util.ArrayList;
 import java.util.List;

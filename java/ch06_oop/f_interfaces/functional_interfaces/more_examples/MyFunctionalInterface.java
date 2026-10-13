@@ -1,4 +1,4 @@
-package b_oops.e_interfaceexamples.functionalinterface;
+package ch06_oop.f_interfaces.functional_interfaces.more_examples;
 
 /*
  A functional interface is an interface that contains only one abstract method. 

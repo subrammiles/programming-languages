@@ -1,4 +1,4 @@
-package oops.f_interfaces;
+package ch06_oop.f_interfaces;
 
 /*By default interface and the methods inside the interface are abstract in nature.
 Even though you did't use the abstract keyword

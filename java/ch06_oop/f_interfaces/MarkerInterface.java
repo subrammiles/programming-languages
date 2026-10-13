@@ -1,4 +1,4 @@
-package oops.f_interfaces;
+package ch06_oop.f_interfaces;
 
 
 import java.io.FileInputStream;

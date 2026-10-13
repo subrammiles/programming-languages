@@ -1,4 +1,4 @@
-package a_basics.c_exceptionhandling;
+package ch10_exception_handling;
 
 public class MultipleCatchBlocks {
 	public static void main(String[] args) {

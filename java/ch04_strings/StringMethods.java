@@ -1,4 +1,4 @@
-package a_basics.strings;
+package ch04_strings;
 
 public class StringMethods {
 	

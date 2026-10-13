@@ -1,4 +1,4 @@
-package oops.f_interfaces;
+package ch06_oop.f_interfaces;
 
 
 /*Interface can extends n number of interfaces*/

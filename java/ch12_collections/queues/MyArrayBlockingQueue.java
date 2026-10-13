@@ -1,4 +1,5 @@
-package d_collections.queues;
+package ch12_collections.queues;
+
 import java.util.concurrent.ArrayBlockingQueue;
 public class MyArrayBlockingQueue {
 	public static void main(String[] args) {

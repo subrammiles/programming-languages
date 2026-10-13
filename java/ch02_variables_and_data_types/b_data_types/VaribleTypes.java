@@ -1,4 +1,4 @@
-package a_basics.datatypes;
+package ch02_variables_and_data_types.b_data_types;
 
 public class VaribleTypes {
 	int data = 50;// instance variable or class variable

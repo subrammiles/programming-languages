@@ -1,4 +1,4 @@
-package oops.f_interfaces.functional_interfaces.examples;
+package ch06_oop.f_interfaces.functional_interfaces.examples;
 
 public class ThreadFI {
 

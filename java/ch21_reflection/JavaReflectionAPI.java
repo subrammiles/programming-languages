@@ -1,4 +1,4 @@
-package c_advanced.reflectionAPI;
+package ch21_reflection;
 
 /*
  Java Reflection is a process of examining or modifying the run time behavior of a class at run time.

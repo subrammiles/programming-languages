@@ -1,4 +1,4 @@
-package c_advanced.sockets.multiclientsServer;
+package ch19_networking.sockets.multiclientsServer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

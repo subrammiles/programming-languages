@@ -1,4 +1,4 @@
-package b_oops.binding;
+package ch06_oop.l_binding;
 
 public class DynamicBinding {
 

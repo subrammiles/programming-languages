@@ -1,4 +1,4 @@
-package oops.k_accessmodifier.default2;
+package ch06_oop.k_accessmodifier.default2;
 
 //import oops.accessmodifier.default1.DefaultTest2;
 //

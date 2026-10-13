@@ -1,4 +1,4 @@
-package oops.e_abstraction.examples.paint;
+package ch06_oop.e_abstraction.examples.paint;
 
 public class C_Reactangle extends A_PaintAnObject {
 

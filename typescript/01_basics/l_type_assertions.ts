@@ -8,7 +8,7 @@ Prefer narrowing (typeof checks) where you can.
 
 let x: unknown = "hello";
 console.log((x as string).length); // 5
-console.log((<string>x).length); // 5
+// console.log((<string>x).length); // the same, but Node's type stripping rejects this older syntax
 
 const wrong: unknown = 123;
 console.log((wrong as string).length); // undefined -> the assertion lied, no error raised

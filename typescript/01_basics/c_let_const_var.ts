@@ -12,7 +12,7 @@ function testTheVariables(): void {
   let x2 = 1.4567;
   var y2 = 2.6789;
   const z2 = 89.45566;
-  console.log(x2 + y2 + z2); // 93.59126
+  console.log(x2 + y2 + z2); // 93.59125999999999 (floating point)
 
   let x3 = "Happy";
   var y3 = " Birthday";

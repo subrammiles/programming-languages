@@ -1,20 +1,14 @@
-
-/* Suppose we want to store the third party data in an array 
-but we don’t know the exact data type of array so we 
-initialize the array of any */
-
-
-let unKnowDataTypeAray : any[]=[1,"data1"];
-unKnowDataTypeAray.push("data2");
-unKnowDataTypeAray.push(2)
-unKnowDataTypeAray.push("data3");
-unKnowDataTypeAray.push(3)
-console.log(unKnowDataTypeAray)
-
-/*If you see we push an integer and string into the array safely
+/*
+An any[] array accepts anything, which is tempting for third-party data
+whose shape you don't know. Usually a union or unknown[] is the better choice.
 */
 
-/*Instead of "any" if you give number ,string type ,it won't work as expected */
-//let unKnowDataTypeAray2 : number[]=[1,"data1"];
+const unknownData: any[] = [1, "data1"];
+unknownData.push("data2", 2, true);
+console.log(unknownData); // [ 1, 'data1', 'data2', 2, true ]
 
-/*Type 'string' is not assignable to type 'number'. */
+// const onlyNumbers: number[] = [1, "data1"]; // error TS2322: Type 'string' is not assignable to type 'number'.
+
+const better: (number | string)[] = [1, "data1"]; // say exactly what's allowed
+better.push(2);
+console.log(better);

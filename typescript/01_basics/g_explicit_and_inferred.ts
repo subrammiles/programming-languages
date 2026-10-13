@@ -1,18 +1,20 @@
 /*
-When creating a variable, there are two main ways TypeScript assigns a type:
-Explicit
-Implicit
+Two ways a variable gets its type:
+ Explicit: you write it          let name: string = "Dylan"
+ Inferred: TypeScript works it out from the value
+Prefer inference for simple values; annotate function parameters and public APIs.
 */
 
-/*In Explicit ,We will mention type*/
-let lastName456: string = "Dylan"; //string type
-let isActive45:boolean=true;//boolean type
-let myNumber234:number=34; //number
+let lastName: string = "Dylan"; // explicit
+let isActive: boolean = true;
+let myNumber: number = 34;
 
-/*Implicit - TypeScript will "guess" the type, based on the assigned value*/
-let lastName455 = "Dylan";
-let isActive46=true;
-let myNumber233=34;
+let lastName2 = "Dylan"; // inferred: string
+let isActive2 = true; // inferred: boolean
+let myNumber2 = 34; // inferred: number
+// lastName2 = 3; // error TS2322: Type 'number' is not assignable to type 'string'.
 
-//lastName455=3;/*Type 'number' is not assignable to type 'string' */
-//TypeScript will "guess"(infer) the type as string , based on the assigned value
+const pi = 3.14; // const infers the LITERAL type 3.14, since it can never change
+let radius = 2; // let infers the wider type number
+
+console.log(lastName, isActive, myNumber, lastName2, isActive2, myNumber2, pi * radius ** 2);

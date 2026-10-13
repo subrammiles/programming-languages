@@ -1,34 +1,51 @@
-
+/*
+Basic types
+ string number boolean      the everyday ones (number covers ints and floats)
+ bigint symbol               less common primitives
+ null undefined              "no value"
+ any                         turns type checking OFF (avoid)
+ unknown                     "could be anything", but safe: you must check before using it
+ never                       a value that can never exist
+ A | B                       union: either type
+*/
 
 let firstName: string = "Dylan";
 let age: number = 12;
-let isValidAge:boolean=false;
-let y56: undefined = undefined;
-let z45: null = null;
+let isValidAge: boolean = false;
+let big: bigint = 9_007_199_254_740_993n;
+let nothing: undefined = undefined;
+let empty: null = null;
+console.log(firstName, age, isValidAge, big, nothing, empty);
 
+let anything: any;
+anything = true;
+anything = "ty";
+anything = 2;
+console.log(anything.toFixed(1)); // 2.0 -> no checking at all; anything.foo() would crash at runtime
 
-let myvar56:any;
-myvar56=true;
-myvar56="ty";
-myvar56=2;
-/* "any" does not refer to any specific type of data*/
-
-/*Unknow data type*/
 let w: unknown = 1;
-w = "subbu"; // no error
+w = "subbu"; // any value can be stored...
+// w.toUpperCase(); // error: 'w' is of type 'unknown' -> ...but you must check it first
+if (typeof w === "string") console.log(w.toUpperCase()); // SUBBU
 
-/*never is rarely used, especially by itself, 
-its primary use is in advanced generics.*/
-
-let myNeverVar: never; 
-
-
-//Union data type
-//It can be used when value can be more than single data type
-//means It can be a string or a number.We use "|",OR symbol
-
-function printStatus(code: string|number){
-    console.log(`Status ${code}`)
+// never: e.g. a function that always throws never returns a value
+function fail(message: string): never {
+  throw new Error(message);
+}
+try {
+  fail("boom");
+} catch (e) {
+  console.log((e as Error).message); // boom
 }
 
+// Union: a value can be one of several types. Use | ("or").
+function printStatus(code: string | number): void {
+  console.log(`Status ${code}`);
+}
+printStatus(404);
+printStatus("OK");
 
+// Literal types: only these exact values
+let direction: "up" | "down" = "up";
+// direction = "left"; // error TS2322
+console.log(direction);

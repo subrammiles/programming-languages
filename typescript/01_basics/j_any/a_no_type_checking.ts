@@ -1,8 +1,14 @@
-
-/*any is a type that disables type 
-checking and effectively allows all 
-types to be used. */
+/*
+any turns type checking OFF for a value. Everything is allowed, so mistakes
+only show up when the program crashes. Treat any as a last resort.
+*/
 
 let v: any = true;
-v = "string"; // no error as it can be "any" type
-Math.round(v); // no error as it can be "any" type 
+v = "string"; // no error
+console.log(Math.round(v)); // NaN -> no compile error, just a wrong result
+
+try {
+  v.notAFunction(); // compiles fine...
+} catch (e) {
+  console.log((e as Error).message); // v.notAFunction is not a function -> ...fails at runtime
+}

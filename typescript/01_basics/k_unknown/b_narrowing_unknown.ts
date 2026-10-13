@@ -1,16 +1,21 @@
-/*We can  iniitlize  any value to unknow  */
+/*
+To use an unknown value, "narrow" it first with a check (typeof, instanceof, in, Array.isArray ...).
+*/
 
-let myUnknowVar10:unknown=1;
-let myUnknowVar11:unknown=2;
+let first: unknown = 1;
+let second: unknown = 2;
+// console.log(first + second); // error TS18046: 'first' is of type 'unknown'.
 
-//You can not directly apply operation on unknow
-//It has strict type safety
-//console.log(myUnknowVar10+myUnknowVar11);
-
-/*one using the unknown  variable has to do a typecheck first*/
-if(typeof myUnknowVar10 ==="number" &&  typeof myUnknowVar11 ==="number"){
-    console.log(myUnknowVar10+myUnknowVar11) 
-}else{
-    console.log("Not able to add these numbers")
+if (typeof first === "number" && typeof second === "number") {
+  console.log(first + second); // 3 -> inside the if, both are numbers
+} else {
+  console.log("not able to add these values");
 }
 
+function describe(value: unknown): string {
+  if (typeof value === "string") return `string of length ${value.length}`;
+  if (Array.isArray(value)) return `array of ${value.length} items`;
+  if (value instanceof Date) return `date in ${value.getFullYear()}`;
+  return "something else";
+}
+console.log(describe("hello"), "|", describe([1, 2]), "|", describe(new Date(2026, 0, 1)), "|", describe(5));

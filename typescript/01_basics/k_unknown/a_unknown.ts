@@ -1,16 +1,8 @@
-/*We can  iniitlize  any value to unknow  */
+/*
+unknown accepts any value, like any, but you can't USE it until you check its type.
+*/
 
-let myUnknowVar1:unknown=1;
-let myUnknowVar2:unknown="Subbu";
-let myUnknowVar3:unknown=true;
-let myUnknowVar4:unknown=345.677;
-let myUnknowVar5:unknown=[1,2,3,4];
-let myUnknowVar6:unknown={"k1":"v1"};
-let myUnknowVar7:unknown=()=>{console.log("I am a test")};
-let myUnknowVar8:unknown=null;
-let myUnknowVar9:unknown=undefined
-
-console.log(myUnknowVar1);
-console.log(myUnknowVar6);
-
-
+const values: unknown[] = [1, "Subbu", true, 345.677, [1, 2, 3], { k1: "v1" }, () => "hi", null, undefined];
+for (const v of values) {
+  console.log(typeof v, v);
+}

@@ -28,10 +28,11 @@ build/%: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(STD) $(WARN) $(SAN) $(CFLAGS) $< -o $@ $(LDLIBS)
 
-# C23 needs a recent compiler: clang 18+ or gcc 14+
+# C23 needs a recent compiler: gcc 13+ (-std=c2x) or gcc 14+ / clang 19+ (-std=c23)
+C23_STD ?= -std=c2x
 $(C23_BINS): build/%: %.c
 	@mkdir -p $(dir $@)
-	clang -std=c23 $(WARN) $(SAN) $(CFLAGS) $< -o $@ $(LDLIBS)
+	$(CC) $(C23_STD) $(WARN) $(SAN) $(CFLAGS) $< -o $@ $(LDLIBS)
 
 build/11_multiple_files/app: $(wildcard 11_multiple_files/*.c 11_multiple_files/*.h)
 	$(MAKE) -C 11_multiple_files BUILD=../build/11_multiple_files

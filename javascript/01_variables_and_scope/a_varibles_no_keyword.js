@@ -16,7 +16,7 @@ s=2
 without any keywords
 */
 function myFunc(){
-    myMessage="Good Morning Mr.Subrahmanyam"
+    myMessage="Good Morning Mr.Trump"
 }
 myFunc(); //This function must be called to make the myMessage global
 console.log(myMessage) //After calling the function myMessage becomes global

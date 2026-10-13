@@ -1,34 +1,35 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-/*Pointer vs Value receiver*/
-type Salary struct {
+/*
+Value receiver   func (s Salary) ...   works on a COPY; cannot change the original
+Pointer receiver func (s *Salary) ...  works on the original; no copying
+Rules of thumb:
+ - use a pointer receiver if the method changes the receiver, or the struct is large
+ - keep all methods of a type consistent (all pointer or all value)
+Go automatically takes the address: salary.raise() works even when salary is not a pointer.
+*/
+
+type salary struct {
 	amount int
 }
 
-// Value receiver
-func (s Salary) increaseSalaryValue(increment int) int {
-	s.amount = s.amount + increment
+func (s salary) raiseCopy(increment int) int {
+	s.amount += increment
 	return s.amount
 }
 
-// Pointer receiver
-func (s *Salary) increaseSalaryPointer(increment int) int {
-	s.amount = s.amount + increment
-	return s.amount
+func (s *salary) raise(increment int) {
+	s.amount += increment
 }
 
 func pointerVsValueReceiver() {
-	/*Value reciver*/
-	salary1 := Salary{1000}
-	temp := salary1.increaseSalaryValue(100)
-	fmt.Println(temp)           //1100
-	fmt.Println(salary1.amount) //1000
-	/*pointer reciver*/
-	salary2 := Salary{1000}
-	salary2.increaseSalaryPointer(100)
-	fmt.Println(salary2.amount) //1100
+	s1 := salary{1000}
+	fmt.Println(s1.raiseCopy(100)) // 1100
+	fmt.Println(s1.amount)         // 1000 -> unchanged
+
+	s2 := salary{1000}
+	s2.raise(100)          // Go rewrites this as (&s2).raise(100)
+	fmt.Println(s2.amount) // 1100
 }

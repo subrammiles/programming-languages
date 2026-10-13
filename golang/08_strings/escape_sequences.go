@@ -2,16 +2,16 @@ package main
 
 import "fmt"
 
-func escapeSequencesInString() {
-	// include double quote
-	// message := "This article is about "String" in Go ."
+/*
+Escape sequences in double-quoted strings:
+ \n new line  \t tab  \" quote  \\ backslash  \u00e9 Unicode code point
+Raw strings in backticks `...` have NO escapes and can span lines (good for regex, JSON, paths).
+*/
 
-	// Since strings are represented by double quotes, the compiler will treat
-	//"This article is about " as the string.
-	//Hence, the above code will cause an error.
-
-	// To solve this issue, we can use the escape character \ in Go.
-	message := "This article is about \"String\" in Go ."
-
-	fmt.Println(message)
+func escapeSequences() {
+	fmt.Println("This article is about \"String\" in Go.")
+	fmt.Println("Tab\tseparated\nnew line")
+	fmt.Println("caf\u00e9")
+	fmt.Println(`C:\Users\subbu\no\escapes`)
+	fmt.Println(`{"name": "Subbu"}`)
 }

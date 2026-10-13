@@ -1,102 +1,59 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
-func sliceAndArray() {
-	/*For aray we defined the size initially*/
-	var myarray [2]int
-	myarray = [2]int{1, 2}
-	//myarray = [2]int{1, 2, 3}
-	//myarray = [3]int{1, 2}
-	fmt.Println(myarray)
+/*
+Slices: a flexible VIEW over an array.  []int (no length in the type)
+A slice header has three parts: a pointer to the array, a length, a capacity.
+ create:  []int{1, 2}   make([]int, len, cap)   array[a:b]
+ grow:    s = append(s, x)   (always use the result!)
+*/
 
-	/*For slice  we  don't defined the size initially*/
-	var myslice []int
-	myslice = []int{1, 2, 3, 4, 5}
-	myslice = []int{1, 2, 3, 4, 5, 6}
-	fmt.Println(myslice)
+func sliceVsArray() {
+	var myarray [2]int = [2]int{1, 2} // size fixed
+	myslice := []int{1, 2, 3, 4, 5}   // size flexible
+	myslice = append(myslice, 6)
+	fmt.Println(myarray, myslice) // [1 2] [1 2 3 4 5 6]
 }
 
-func slice1() {
-	/*Createing using literal*/
-	var myslice []int
-	myslice = []int{1, 2, 3, 4, 5}
-	myslice = []int{1, 2, 3, 4, 5, 6} //we can add new element in slice
-	fmt.Println(myslice)
-	/*Using shorthand*/
-	myslice2 := []int{1, 2, 3}
-	fmt.Println(myslice2)
-	/*Using make function*/
-	var myslice3 = make([]int, 3)
-	myslice3 = []int{1, 2, 3, 4, 5}
-	fmt.Println(myslice3)
-	/*
-		The make built-in function allocates and initializes an
-		object of type slice, map, or chan (only).
-	*/
-
-}
-func sliceFromAnArray() {
-	var a = [7]int{1, 2, 3, 4, 5, 6, 7} //array
-	var slice1 []int = a[:]
-	fmt.Println(slice1)
-	var slice2 []int = a[0:3]
-	fmt.Println(slice2)
-	var slice3 []int = a[:3]
-	fmt.Println(slice3)
-	var slice4 []int = a[:4]
-	fmt.Println(slice4)
-
-}
-func sortSlice() {
-	myslice := []int{5, 4, 3, 2, 1}
-	sort.Ints(myslice)
-	fmt.Println(myslice)
-	myslice2 := []string{"e", "d", "c", "b", "a"}
-	sort.Strings(myslice2)
-	fmt.Println(myslice2)
-}
-func searchSlice() {
-	/*sort.SearchInts() returns the index*/
-	myslice := []int{5, 4, 3, 2, 1}
-	fmt.Println(sort.SearchInts(myslice, 3))
+func creatingSlices() {
+	literal := []int{1, 2, 3}
+	made := make([]int, 3)                                                  // [0 0 0]
+	withCap := make([]int, 0, 10)                                           // empty, but room for 10
+	var nilSlice []int                                                      // nil: len 0, cap 0, still usable
+	fmt.Println(literal, made, len(withCap), cap(withCap), nilSlice == nil) // [1 2 3] [0 0 0] 0 10 true
+	nilSlice = append(nilSlice, 1)
+	fmt.Println(nilSlice) // [1]
 }
 
-func reverseSlice() {
-	myslice := []int{5, 4, 3, 2, 1}
-	fmt.Println(sort.Reverse(sort.IntSlice(myslice)))
+func slicesFromAnArray() {
+	a := [7]int{1, 2, 3, 4, 5, 6, 7}
+	fmt.Println(a[:])   // [1 2 3 4 5 6 7]
+	fmt.Println(a[0:3]) // [1 2 3] -> from index 0 up to (not including) 3
+	fmt.Println(a[:4])  // [1 2 3 4]
+	fmt.Println(a[5:])  // [6 7]
+
+	s := a[1:3]
+	s[0] = 99         // changes the ARRAY underneath
+	fmt.Println(a[1]) // 99
 }
 
-func iterateSlices() {
-	slice1 := []int{12, 78, 50}
-	slice2 := []string{"US", "UK", "India", "USSR"}
-
-	for i := 0; i < len(slice1); i++ {
-		fmt.Printf(" index = %d and value is %d \n", i, slice1[i])
+func iteratingSlices() {
+	countries := []string{"US", "UK", "India"}
+	for i := 0; i < len(countries); i++ {
+		fmt.Printf("index = %d and value is %s\n", i, countries[i])
 	}
-	fmt.Println("......Using Range.....")
-	/*Using Range*/
-	for index, value := range slice2 {
-		fmt.Printf(" index = %d and value is %s \n", index, value)
-	}
-	/*Using Range*/
-	for index, value := range slice2 {
-		fmt.Printf(" index = %d and value is %s \n", index, value)
+	for index, value := range countries {
+		fmt.Printf("index = %d and value is %s\n", index, value)
 	}
 }
 
-func listOfStructs() {
+func sliceOfStructs() {
 	type student struct {
 		no   int
 		name string
 	}
 	students := []student{{1, "subbu"}, {2, "jaffa"}}
-	fmt.Println(students)
-
-}
-func main() {
-	searchSlice()
+	students = append(students, student{3, "ravi"})
+	fmt.Println(students) // [{1 subbu} {2 jaffa} {3 ravi}]
 }

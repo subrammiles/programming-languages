@@ -3,12 +3,13 @@ package main
 import "fmt"
 
 /*
-1.When we create a variable, a memory address is allocated for the
-variable to store the value.
-2.In Go, we can access the memory address using the & operator.
+Every variable lives at a memory address. & gives you that address.
 */
-func memoryAddressOfVaribles() {
-	var myNumber1 int = 50
-	myNumber1Address := &myNumber1
-	fmt.Println("Memory Address:", myNumber1Address) //0x1400000e0c8
+
+func memoryAddress() {
+	var number int = 50
+	address := &number
+	fmt.Println("value:", number)
+	fmt.Println("address:", address)             // e.g. 0xc000012345 (different every run)
+	fmt.Printf("type of address: %T\n", address) // *int
 }

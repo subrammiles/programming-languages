@@ -1,62 +1,41 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-/*Basic data stracture int ,string....*/
 /*
-In Go language, you are allowed to create a method with non-struct type receiver as long as the type and the method
-definitions are present in the same package.
+Methods can be declared on ANY type you define in the same package,
+not just structs: numbers, strings, slices, functions ...
+You can't add methods to types from other packages (like int or time.Time directly).
 */
-/*Integer*/
-type MyNumber int
 
-func (n MyNumber) isEvenNumber() bool {
-	return (n % 2) == 0
-}
-func (n *MyNumber) incrementByOne() {
-	/*We are using pointer.So actual argument changes*/
-	*n = *n + 1
-}
+type myNumber int
 
-func testIntegerMethods() {
-	var num MyNumber = 12
-	fmt.Println(num.isEvenNumber())
-	num.incrementByOne()
-	fmt.Println(num)
-}
+func (n myNumber) isEven() bool { return n%2 == 0 }
+func (n *myNumber) increment()  { *n++ } // pointer receiver: changes the original
 
-/*String*/
-type MyString string
+type myString string
 
-func (s MyString) isEmpty() bool {
-	if len(s) > 0 {
-		return false
-	} else {
-		return true
+func (s myString) isEmpty() bool { return len(s) == 0 }
+
+type myList []int
+
+func (list myList) sum() int {
+	total := 0
+	for _, v := range list {
+		total += v
 	}
+	return total
 }
 
-func testMyStringMethods() {
-	var mtstr MyString = ""
-	fmt.Println(mtstr.isEmpty())
-}
+func methodsOnAnyType() {
+	var num myNumber = 12
+	fmt.Println(num.isEven()) // true
+	num.increment()
+	fmt.Println(num) // 13
 
-/*List*/
-type MyList []int
+	var s myString = ""
+	fmt.Println(s.isEmpty()) // true
 
-func (list MyList) print() {
-	fmt.Printf("list: %v\n", list)
-}
-
-func testListMethods() {
-	var list MyList = []int{1, 2, 3}
-	list.print()
-}
-
-func methodsOnDataType() {
-	testIntegerMethods()
-	testMyStringMethods()
-	testListMethods()
+	list := myList{1, 2, 3}
+	fmt.Println(list, list.sum()) // [1 2 3] 6
 }

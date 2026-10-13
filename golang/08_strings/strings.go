@@ -5,145 +5,67 @@ import (
 	"strings"
 )
 
-func accessCharactersOfString() {
-	/*
-	   string is a sequence of characters.
-	   Hence, we can access individual characters of a string.
-	*/
-	// create and initialize a string
+/*
+Strings are IMMUTABLE sequences of BYTES, usually holding UTF-8 text.
+ len(s)   number of BYTES (not characters)
+ s[i]     the i-th BYTE
+ the strings package has the helpers: Contains, Split, Join, Replace, ToUpper, Fields ...
+*/
+
+func accessingCharacters() {
 	name := "Programiz"
-
-	// use len() function to count length
-	stringLength := len(name)
-
-	fmt.Println("Length of a string is:", stringLength)
-
-	// access first character
-	fmt.Printf("%c\n", name[0]) // P
-
-	// access fourth character
-	fmt.Printf("%c\n", name[3]) // g
-
-	// access last character
-	fmt.Printf("%c", name[8]) // z
+	fmt.Println("length:", len(name))                             // 9
+	fmt.Printf("%c %c %c\n", name[0], name[3], name[len(name)-1]) // P g z
+	fmt.Println(name[0])                                          // 80 -> a byte (uint8), not a character
+	fmt.Println(name[3:7])                                        // gram -> slicing works on bytes too
 }
 
 func stringsAreImmutable() {
-	/*strings are immutable. This means once we create a string,
-	we cannot change it.*/
-
 	message := "Go"
-	message = message + " " + "Lang"
-
-	/*Here, we are using the + operator to add another string "String"
-		to the previous string.It looks like we can change the value of
-		the previous string. However, this is not true.
-	    go creates the first string "Go"
-		It then creates another string by joining the first string with "Lang"
-		assigns the new string to message
-		the first string "Go" remains unchanged.
-	*/
+	// message[0] = 'g' // compile error: cannot assign to message[0]
+	message = message + " " + "Lang" // builds a NEW string; "Go" itself is unchanged
+	fmt.Println(message)             // Go Lang
 }
 
-func stringCompare() {
-	// create three strings
-	string1 := "Programiz"
-	string2 := "Programiz Pro"
-	string3 := "Programiz"
-
-	// compare strings
-	fmt.Println(strings.Compare(string1, string2)) // -1
-	fmt.Println(strings.Compare(string2, string3)) // 1
-	fmt.Println(strings.Compare(string1, string3)) // 0
-
-	/*
-		strings.Compare(string1, string2)
-		to compare two strings: string1 and string2. The function returns:
-		-1 because string1 is smaller than string2
-		1 because string2 is greater than string3
-		0 because string1 and string3 are equal
-	*/
-
+func comparingStrings() {
+	fmt.Println("Programiz" == "programiz")                    // false -> case-sensitive
+	fmt.Println(strings.EqualFold("Programiz", "programiz"))   // true
+	fmt.Println(strings.Compare("Programiz", "Programiz Pro")) // -1
+	fmt.Println("apple" < "banana")                            // true
 }
 
-func checkIfStringContainsSubstring() {
-	/*
-	 To check if a substring is present inside a string,
-	 we use the Contains() method of the Go strings package.
-	*/
+func searching() {
 	text := "Go Programming"
-	substring1 := "Go"
-	substring2 := "Golang"
-
-	// check if Go is present in Go Programming
-	result := strings.Contains(text, substring1)
-	fmt.Println(result)
-
-	// check if Golang is present in Go Programming
-	result = strings.Contains(text, substring2)
-	fmt.Println(result)
-
+	fmt.Println(strings.Contains(text, "Go"), strings.Contains(text, "Golang")) // true false
+	fmt.Println(strings.HasPrefix(text, "Go"), strings.HasSuffix(text, "ing"))  // true true
+	fmt.Println(strings.Index(text, "Pro"), strings.Count(text, "g"))           // 3 2
 }
 
-func replaceAString() {
-	/*
-			strings.Replace(text, "r", "t", 1)
-		Here,
-		text - string where we perform the replace operation
-		"r" - old character that needs to be replaced
-		"t" - new character that replaces the old character
-		1 - represents how many old characters to be replaced
-	*/
-	fmt.Println(strings.Replace("car", "r", "t", 1))       //cat
-	fmt.Println(strings.Replace("Programiz", "r", "R", 2)) //PRogRamiz
+func transforming() {
+	fmt.Println(strings.Replace("car", "r", "t", 1))       // cat
+	fmt.Println(strings.Replace("Programiz", "r", "R", 2)) // PRogRamiz
+	fmt.Println(strings.ReplaceAll("a-b-c", "-", "+"))     // a+b+c
+	fmt.Println(strings.ToUpper("go is fun"))              // GO IS FUN
+	fmt.Println(strings.ToLower("I LOVE GOLANG"))          // i love golang
+	fmt.Println(strings.TrimSpace("  padded  "))           // padded
+	fmt.Println(strings.Trim("--x--", "-"))                // x
+	fmt.Println(strings.Repeat("ab", 3))                   // ababab
+	fmt.Println(strings.Title("legacy title"))             //nolint // deprecated: use golang.org/x/text/cases
 }
 
-func changeCaseOfString() {
-	text1 := "go is fun to learn"
-	// convert to uppercase
-	text1 = strings.ToUpper(text1)
-	fmt.Println(text1)
-	text2 := "I LOVE GOLANG"
-	// convert to lowercase
-	text2 = strings.ToLower(text2)
-	fmt.Println(text2)
-}
+func splittingAndJoining() {
+	fmt.Println(strings.Split("I Love Golang", " "))                // [I Love Golang]
+	fmt.Println(strings.Fields("  many   spaces here "))            // [many spaces here]
+	fmt.Println(strings.Join([]string{"I", "love", "Golang"}, " ")) // I love Golang
 
-func splitStrings() {
-	var message = "I Love Golang"
-	// split string from space " "
-	splittedString := strings.Split(message, " ")
-	fmt.Println(splittedString) //[I Love Golang]
-}
+	before, after, found := strings.Cut("key=value", "=") // Go 1.18
+	fmt.Println(before, after, found)                     // key value true
 
-func compareStringWithEqualOperator() {
-	//we can also use the == operator to compare two strings
-	// create 2 strings
-	string1 := "Programiz"
-	string2 := "programiz"
+	dir, file, _ := strings.CutLast("/home/subbu/notes.txt", "/") // Go 1.27
+	fmt.Println(dir, file)                                        // /home/subbu notes.txt
 
-	// compare two strings
-	result := string1 == string2
-
-	fmt.Println(result)
-
-}
-
-func createStringsFromASlice() {
-	/*
-	 can also create a string by joining all the elements of a string slice
-	*/
-	// create a string slice
-	words := []string{"I", "love", "Golang"}
-
-	// join each element of the slice
-	message := strings.Join(words, " ")
-	fmt.Println(message)
-}
-
-func main() {
-	//fmt.Println("Subbu\Gabbu");
-	//fmt.Println('Subbu\Gabbu');
-	fmt.Print("test")
-	escapeSequencesInString()
+	for part := range strings.SplitSeq("a,b,c", ",") { // an iterator, Go 1.24
+		fmt.Print(part, " ")
+	}
+	fmt.Println()
 }

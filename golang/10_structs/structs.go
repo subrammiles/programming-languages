@@ -1,77 +1,70 @@
-/*
-
-type StructureName struct {
-  // structure definition
-}
-Here,
-
-struct - keyword used to define a structure
-StructName - the name of the structure
-*/
-
 package main
 
 import "fmt"
 
-func structExample1() {
-	// declare a struct
+/*
+A struct groups fields of different types into one value.
 	type Person struct {
-		name string
-		age  int
+		Name string
+		Age  int
 	}
-	// assign value to struct while creating an instance
-	person1 := Person{"John", 25}
-	fmt.Println(person1)
+ - capitalised fields are exported (visible outside the package, and to encoding/json)
+ - structs are VALUES: assigning or passing one copies it
+ - structs are comparable with == if all their fields are
+*/
 
-	// define an instance
-	var person2 Person
-
-	// assign value to struct variables
-	person2 = Person{
-		name: "Sara",
-		age:  29,
-	}
-
-	fmt.Println(person2)
-	fmt.Println(person2)
-
-	// access the age of the struct
-	fmt.Println("Length:", person2.age)
+type Person struct {
+	Name string
+	Age  int
 }
 
-func functionInsideAStruct() {
-	//Go also allows us to create a function inside a struct.
-	//It treats function as a field of struct. For example,
+func creatingStructs() {
+	p1 := Person{"John", 25}            // positional: fragile if fields change
+	p2 := Person{Name: "Sara", Age: 29} // named fields: preferred
+	var p3 Person                       // zero value: {"" 0}
+	p4 := &Person{Name: "Ravi"}         // pointer to a new struct
 
-	// initialize the function Rectangle
-	type Rectangle func(int, int) int
+	fmt.Println(p1, p2, p3, *p4) // {John 25} {Sara 29} { 0} {Ravi 0}
+	fmt.Println("age:", p2.Age)
+	p4.Age = 40              // fields through a pointer, no * needed
+	fmt.Printf("%+v\n", *p4) // {Name:Ravi Age:40}
+}
 
-	// create structure
-	type rectanglePara struct {
-		length  int
-		breadth int
-		color   string
+func structsAreValues() {
+	a := Person{Name: "Asha", Age: 30}
+	b := a // copy
+	b.Name = "Bina"
+	fmt.Println(a.Name, b.Name)          // Asha Bina
+	fmt.Println(a == Person{"Asha", 30}) // true
+}
 
-		// function as a field of struct
-		rect Rectangle
+func functionAsAField() {
+	type rectangle struct {
+		length, breadth int
+		color           string
+		area            func(int, int) int // a function stored in a field
 	}
-	// assign values to struct variables
-	result := rectanglePara{
+	r := rectangle{
 		length:  10,
 		breadth: 20,
 		color:   "Red",
-		rect: func(length int, breadth int) int {
-			return length * breadth
-		},
+		area:    func(l, b int) int { return l * b },
 	}
-
-	fmt.Println("Color of Rectangle: ", result.color)
-	fmt.Println("Area of Rectangle: ", result.rect(result.length, result.breadth))
-
-	/*
-		In the above example, we have defined a function Rectangle as a field of struct rectanglePara and used the function to find the area of a rectangle.
-	*/
+	fmt.Println("color:", r.color, "area:", r.area(r.length, r.breadth)) // color: Red area: 200
 }
-func main() {
-	structExample1()
+
+func anonymousStructs() {
+	point := struct{ X, Y int }{3, 4} // a one-off struct with no type name
+	fmt.Println(point.X + point.Y)    // 7
+
+	tests := []struct {
+		input string
+		want  int
+	}{
+		{"a", 1},
+		{"abc", 3},
+	} // very common in table-driven tests (chapter 20)
+	for _, tt := range tests {
+		fmt.Println(tt.input, len(tt.input) == tt.want)
+	}
 }

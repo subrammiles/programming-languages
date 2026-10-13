@@ -2,55 +2,49 @@ package main
 
 import (
 	"fmt"
-
 	"math"
 )
 
-//Interfaces are named collections of method signatures.
-/*Syntax:
-  type interface_name interface{
-    Method signatures
-  }
+/*
+An interface is a set of method signatures.
+	type Geometry interface {
+		Area() float64
+		Perimeter() float64
+	}
+A type satisfies an interface IMPLICITLY, just by having those methods.
+There is no "implements" keyword.
 */
 
-// Here’s a basic interface for geometric shapes.
 type Geometry interface {
-	area() float64
-	perim() float64
+	Area() float64
+	Perimeter() float64
 }
 
-/*Rectangle*/
-type Rectangle struct {
-	width, height float64
-}
+type Rect struct{ Width, Height float64 }
 
-func (r Rectangle) area() float64 {
-	return r.width * r.height
-}
-func (r Rectangle) perim() float64 {
-	return 2*r.width + 2*r.height
-}
+func (r Rect) Area() float64      { return r.Width * r.Height }
+func (r Rect) Perimeter() float64 { return 2*r.Width + 2*r.Height }
 
-/*Circle*/
-type Circle struct {
-	radius float64
-}
+type Circle struct{ Radius float64 }
 
-func (c Circle) area() float64 {
-	return math.Pi * c.radius * c.radius
-}
-func (c Circle) perim() float64 {
-	return 2 * math.Pi * c.radius
-}
+func (c Circle) Area() float64      { return math.Pi * c.Radius * c.Radius }
+func (c Circle) Perimeter() float64 { return 2 * math.Pi * c.Radius }
+
 func measure(g Geometry) {
-	fmt.Println(g)
-	fmt.Println(g.area())
-	fmt.Println(g.perim())
+	fmt.Printf("%v area=%.2f perimeter=%.2f\n", g, g.Area(), g.Perimeter())
 }
 
-func interfaceTestingWithGemotry() {
-	r := Rectangle{width: 3, height: 4}
-	c := Circle{radius: 5}
-	measure(r)
-	measure(c)
+func geometryInterface() {
+	measure(Rect{Width: 3, Height: 4})
+	measure(Circle{Radius: 5})
+
+	shapes := []Geometry{Rect{1, 2}, Circle{1}, Rect{3, 3}}
+	total := 0.0
+	for _, s := range shapes {
+		total += s.Area()
+	}
+	fmt.Printf("total area %.2f\n", total) // 14.14
 }
+
+// A compile-time check that Rect satisfies Geometry (fails to build if not)
+var _ Geometry = Rect{}

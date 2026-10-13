@@ -13,7 +13,7 @@ const people = [
 console.log("<<<<Object.groupBy>>>>>")
 const byCity = Object.groupBy(people, p => p.city);
 console.log(byCity);
-// {
+// [Object: null prototype] {
 //   Delhi: [ { name: 'Asha', city: 'Delhi' }, { name: 'Meena', city: 'Delhi' } ],
 //   Pune: [ { name: 'Ravi', city: 'Pune' } ]
 // }

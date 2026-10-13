@@ -41,9 +41,12 @@ function retry(times: number) {
   };
 }
 
-function sealed(target: Function, _context: ClassDecoratorContext): void {
-  Object.seal(target);
-  Object.seal(target.prototype);
+function sealed(target: Function, context: ClassDecoratorContext): void {
+  // addInitializer runs once the class is fully defined (sealing it any earlier breaks decorators)
+  context.addInitializer(() => {
+    Object.seal(target);
+    Object.seal(target.prototype);
+  });
 }
 
 @sealed
@@ -67,3 +70,4 @@ class Calculator {
 const calc = new Calculator();
 calc.add(2, 3);
 console.log(calc.flaky());
+console.log(Object.isSealed(Calculator)); // true

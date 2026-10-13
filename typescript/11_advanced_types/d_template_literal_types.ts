@@ -9,7 +9,7 @@ type Color = "red" | "blue";
 type ClassName = `btn-${Size}-${Color}`; // 6 combinations, e.g. "btn-sm-red"
 
 const cls: ClassName = "btn-lg-blue";
-// const bad: ClassName = "btn-xl-red"; // error TS2322
+// const bad: ClassName = "btn-xl-red"; // error TS2820: Type '"btn-xl-red"' is not assignable ... Did you mean "btn-lg-red"?
 
 type EventName<T extends string> = `on${Capitalize<T>}`;
 type Handlers = { [E in "click" | "hover" as EventName<E>]: () => void }; // onClick, onHover

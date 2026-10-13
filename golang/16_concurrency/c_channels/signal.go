@@ -1,18 +1,20 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func hello(hello_channel chan bool) {
-	fmt.Println("Hello world goroutine")
-	hello_channel <- true
+/*
+An unbuffered channel makes the sender and receiver meet:
+the receive waits until a value is sent, so it is also a way to WAIT for a goroutine.
+*/
+
+func hello(done chan bool) {
+	fmt.Println("hello from the goroutine")
+	done <- true
 }
-func main() {
-	mychannel := make(chan bool)
-	//Add dat to channel by calling hello method
-	go hello(mychannel)
-	x := <-mychannel
-	fmt.Println(x)
-	fmt.Println("main function")
+
+func signalWithChannel() {
+	done := make(chan bool)
+	go hello(done)
+	ok := <-done // blocks until hello sends
+	fmt.Println("main received", ok)
 }

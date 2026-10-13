@@ -8,10 +8,10 @@ package main
 import (
 	"fmt"
 	"math/rand/v2" // standard library packages have short paths
+	str "strings"  // an import alias
 
 	"github.com/subrammiles/programming-languages/golang/15_packages_and_modules/geometry"
 	"github.com/subrammiles/programming-languages/golang/15_packages_and_modules/internal/secret"
-	str "strings" // an import alias
 )
 
 func main() {

@@ -5,21 +5,21 @@ import (
 	"time"
 )
 
-func hello(done chan bool) {
-	fmt.Println("hello go routine is going to sleep")
-	time.Sleep(3 * time.Second)
-	fmt.Println("hello go routine awake and going to write to done")
-	done <- true
+/*
+A "done" channel lets main wait for a slow goroutine without guessing a sleep time.
+struct{} carries no data, so chan struct{} is the idiomatic signal type.
+*/
 
-	//If you don't wrire data to done ,you will get following error
-	//fatal error: all goroutines are asleep - deadlock!
+func slowWorker(done chan<- struct{}) {
+	fmt.Println("worker: going to sleep")
+	time.Sleep(200 * time.Millisecond)
+	fmt.Println("worker: awake, signalling done")
+	close(done) // closing also wakes every receiver
 }
-func main() {
-	done := make(chan bool)
-	fmt.Println("Main going to call hello go goroutine")
-	go hello(done)
-	//This will wait until some one write dat to "done" channel
-	x := <-done
-	fmt.Println(x)
-	fmt.Println("Main received data")
+
+func doneChannel() {
+	done := make(chan struct{})
+	go slowWorker(done)
+	<-done
+	fmt.Println("main: worker finished")
 }

@@ -5,21 +5,27 @@ import (
 	"time"
 )
 
+/*
+Two goroutines interleave their work: while one sleeps, the other runs.
+*/
+
 func numbers() {
 	for i := 1; i <= 5; i++ {
-		time.Sleep(250 * time.Millisecond)
+		time.Sleep(25 * time.Millisecond)
 		fmt.Printf("%d ", i)
 	}
 }
+
 func alphabets() {
-	for i := 'a'; i <= 'e'; i++ {
-		time.Sleep(400 * time.Millisecond)
-		fmt.Printf("%c ", i)
+	for c := 'a'; c <= 'e'; c++ {
+		time.Sleep(40 * time.Millisecond)
+		fmt.Printf("%c ", c)
 	}
 }
-func main34() {
+
+func interleaving() {
 	go numbers()
 	go alphabets()
-	time.Sleep(3000 * time.Millisecond)
-	fmt.Println("main terminated")
+	time.Sleep(300 * time.Millisecond)
+	fmt.Println("\nmain finished") // e.g. 1 a 2 3 b 4 c 5 d e
 }

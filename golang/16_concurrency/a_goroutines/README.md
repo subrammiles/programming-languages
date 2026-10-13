@@ -1,4 +1,6 @@
+# Goroutines
 
+Concurrent programs do several things at the same time.
+In Go, `go f()` starts `f` in a new **goroutine**, a lightweight thread managed by the Go runtime.
 
-Concurrent programs are able to run multiple processes at the same time.
-In Go, we use goroutines to create concurrent programs. 
+Run: `go run ./16_concurrency/a_goroutines`

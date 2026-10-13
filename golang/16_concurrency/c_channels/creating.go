@@ -2,46 +2,25 @@ package main
 
 import "fmt"
 
-// We use make() function to define a channel
-func createChannel() {
-	//<<<<<<<<<<<<<1st way of defining channel>>>>>>>>>>>..
-	//Syntax var <your channle Name> chan <data type>
+/*
+A channel is a typed pipe between goroutines.
+	ch := make(chan int)      unbuffered
+	ch := make(chan int, 5)   buffered, holds up to 5 values
+	ch <- v                   send
+	v := <-ch                 receive
+The zero value of a channel is nil (sending/receiving on nil blocks forever).
+*/
+
+func creatingChannels() {
 	var a chan int
-	if a == nil {
-		fmt.Println("channel a is nil, going to define it")
-		a = make(chan int)
-		fmt.Printf("Type of a is %T \n", a)
-	}
-	//2nd way
-	fmt.Println("<<<<<<<<<<<<<2nd way of defining channel>>>>>>>>>>>..")
-	var b chan int = make(chan int)
-	fmt.Println(b)
-}
+	fmt.Println(a == nil) // true
+	a = make(chan int)
+	fmt.Printf("type of a is %T\n", a) // chan int
 
-func addDataToChannel() {
-	fmt.Println("<<<<<<<<<<<<<Add data to channel>>>>>>>>>>>..")
-	//Define the length of the channel as 5,or your own length
-	var a chan int = make(chan int, 5)
-	//Use to add data to channel
-	fmt.Println(len(a))
-	a <- 10
-	a <- 12
-	fmt.Println(len(a))
-}
-
-func readDataTochannel() {
-
-	var a chan int = make(chan int, 5)
-	a <- 10
-	a <- 12
-	d1 := <-a
-	fmt.Println(d1)
-	d2 := <-a
-	fmt.Println(d2)
-}
-func main() {
-	createChannel()
-	addDataToChannel()
-	readDataTochannel()
-
+	b := make(chan int, 5)
+	fmt.Println(len(b), cap(b)) // 0 5
+	b <- 10
+	b <- 12
+	fmt.Println(len(b)) // 2 values waiting
+	fmt.Println(<-b, <-b) // 10 12 -> first in, first out
 }

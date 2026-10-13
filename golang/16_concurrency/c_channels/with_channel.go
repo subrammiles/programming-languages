@@ -1,28 +1,19 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func main() {
-	n := 3
-	/* This is where we "make" the channel, which can be used
-	// to move the `int` datatype*/
-	out := make(chan int)
+/*
+With a channel, the goroutine SENDS its result and main receives it.
+chan<- int is a send-only channel; <-chan int is receive-only.
+Directional channel types let the compiler catch mistakes.
+*/
 
-	/*We still run this function as a goroutine, but this time,
-	// the channel that we made is also provided*/
-	go multiplyByTwo(n, out)
-
-	/* Once any output is received on this channel,
-	print it to the console and proceed*/
-	fmt.Println(<-out)
+func multiplyByTwo(num int, out chan<- int) {
+	out <- num * 2
 }
 
-/* This function now accepts a
-channel as its second argument*/
-func multiplyByTwo(num int, out chan<- int) {
-	result := num * 2
-	/* pipes the result into it*/
-	out <- result
+func withChannel() {
+	out := make(chan int)
+	go multiplyByTwo(3, out)
+	fmt.Println(<-out) // 6
 }

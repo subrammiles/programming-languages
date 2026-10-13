@@ -5,17 +5,18 @@ import (
 	"time"
 )
 
-func main() {
-	n := 3
-	// We want to run a goroutine to multiply n by 2
-	go multiplyByTwo(n)
-	// We pause the program so that the `multiplyByTwo` goroutine
-	// can finish and print the output before the code exits
-	time.Sleep(time.Second)
-}
+/*
+Without a channel, a goroutine's return value is LOST: go f() discards it,
+and we have to sleep to see the printed output.
+*/
 
-func multiplyByTwo(num int) int {
+func multiplyByTwoAndPrint(num int) int {
 	result := num * 2
 	fmt.Println(result)
-	return result
+	return result // nobody can receive this
+}
+
+func withoutChannel() {
+	go multiplyByTwoAndPrint(3)
+	time.Sleep(50 * time.Millisecond)
 }

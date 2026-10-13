@@ -2,36 +2,30 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
+	"sync"
 	"time"
 )
 
-func CalculateValue(c chan int) {
-	value := rand.Intn(10)
-	fmt.Println("Calculated Random Value: {}", value)
-	time.Sleep(1000 * time.Millisecond)
+/*
+Two goroutines send results. With a buffer of 2, BOTH can send and finish,
+even though main only receives one value.
+*/
+
+func calculateValueBuffered(c chan<- int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	value := rand.IntN(10)
+	time.Sleep(50 * time.Millisecond)
 	c <- value
-	fmt.Println("This executes regardless as the send is now non-blocking")
+	fmt.Println("sent", value, "-> the send didn't wait for a receiver")
 }
 
-func main() {
-	fmt.Println("Go Channel Tutorial")
-
-	valueChannel := make(chan int, 2)
-	defer close(valueChannel)
-
-	go CalculateValue(valueChannel)
-	go CalculateValue(valueChannel)
-
-	values := <-valueChannel
-	fmt.Println(values)
-
-	time.Sleep(1000 * time.Millisecond)
+func bufferedValues() {
+	values := make(chan int, 2)
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go calculateValueBuffered(values, &wg)
+	go calculateValueBuffered(values, &wg)
+	fmt.Println("received", <-values)
+	wg.Wait() // both senders finished
 }
-
-/* Now, when we execute this, we should see that our second
-goroutine does indeed continue its execution regardless of the fact
- a second receive has not been called in our main() function.
-  Thanks to the time.Sleep(), we can clearly see the difference
-  between unbuffered channels and their blocking nature and our
-  buffered channels and their non-blocking (when not full) nature.*/

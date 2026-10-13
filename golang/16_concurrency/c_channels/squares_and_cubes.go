@@ -1,35 +1,31 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func calcSquares(number int, squareop chan int) {
+/*
+Two goroutines compute in parallel and each sends its result on its own channel.
+*/
+
+func sumOfDigitPowers(number, power int, out chan<- int) {
 	sum := 0
 	for number != 0 {
 		digit := number % 10
-		sum += digit * digit
+		p := 1
+		for range power {
+			p *= digit
+		}
+		sum += p
 		number /= 10
 	}
-	squareop <- sum
+	out <- sum
 }
 
-func calcCubes(number int, cubeop chan int) {
-	sum := 0
-	for number != 0 {
-		digit := number % 10
-		sum += digit * digit * digit
-		number /= 10
-	}
-	cubeop <- sum
-}
-
-func main() {
-	number := 2
-	sqrch := make(chan int)
-	cubech := make(chan int)
-	go calcSquares(number, sqrch)
-	go calcCubes(number, cubech)
-	squares, cubes := <-sqrch, <-cubech
-	fmt.Println("Final output", squares+cubes)
+func squaresAndCubes() {
+	number := 589
+	squares := make(chan int)
+	cubes := make(chan int)
+	go sumOfDigitPowers(number, 2, squares)
+	go sumOfDigitPowers(number, 3, cubes)
+	s, c := <-squares, <-cubes
+	fmt.Println("squares", s, "cubes", c, "total", s+c) // squares 170 cubes 1366 total 1536
 }

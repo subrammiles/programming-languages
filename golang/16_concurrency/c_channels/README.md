@@ -1,12 +1,14 @@
+# Channels
 
-Channels:
-1.Channels in Go act as a medium for goroutines to communicate with each other.
-2.We know that goroutines are used to create concurrent programs. channels that allow goroutines to communicate and share resources with each other.
+1. Channels let goroutines **communicate**: one sends a value, another receives it.
+2. "Don't communicate by sharing memory; share memory by communicating." – Go proverb
 
-we use the make() function to create a channel. For example,
+```go
+ch := make(chan int)  // a channel of ints
+ch <- 5               // send
+v := <-ch             // receive
+close(ch)             // no more values
+for v := range ch {}  // receive until closed
+```
 
-channelName := make(chan int)
-Here,
-
-channelName - name of the channel
-(chan int) - indicates that the channel is of integer type
+Run: `go run ./16_concurrency/c_channels`

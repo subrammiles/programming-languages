@@ -2,15 +2,22 @@ package main
 
 import "fmt"
 
-func myfunc(ch chan int) {
+/*
+main sends a value; the goroutine receives it.
+An unbuffered send blocks until someone receives.
+*/
+
+func addAndPrint(ch chan int, done chan struct{}) {
 	fmt.Println(234 + <-ch)
+	close(done)
 }
-func main() {
-	fmt.Println("start Main method")
-	// Creating a channel
+
+func sendAndReceive() {
+	fmt.Println("start main")
 	ch := make(chan int)
-	go myfunc(ch)
-	//We are writing 23 to "ch" channel
-	ch <- 23
-	fmt.Println("End Main method")
+	done := make(chan struct{})
+	go addAndPrint(ch, done)
+	ch <- 23 // waits until addAndPrint is ready to receive
+	<-done
+	fmt.Println("end main") // 257 is printed before this
 }

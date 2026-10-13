@@ -2,59 +2,25 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 /*
-We can convert a regular function to a goroutine by calling the
-function using the go keyword.
+A goroutine is a function running concurrently with the rest of the program.
+Start one by putting "go" before a function call:   go displayMessage("hi")
+Goroutines are very cheap (a few KB each), so programs can run thousands.
 
-func displayMessage(){
-	//code inside function
-}
-
-go displayMessage()
+When main() returns, the program ends, even if other goroutines are still running.
 */
 
 func displayMessage(message string) {
 	fmt.Println(message)
 }
 
-func main() {
-	/*We are creating a coroutine using "go" keyword before function*/
-	go displayMessage("Own  Function Go Routine:Process 1")
-	displayMessage("Main Function Go Routine:Process 2")
+func mainDoesNotWait() {
+	go displayMessage("goroutine: process 1") // may never print
+	displayMessage("main: process 2")
+	// In a real program main would return here and process 1 would usually be lost.
+	// (This chapter's runner keeps going, so we pause briefly before the next example.)
+	time.Sleep(10 * time.Millisecond)
 }
-
-/*
-Output:Process 2
-*/
-/*
-Only Process 2 prints because
-1.We have used go with the first function call, so it is treated as a
-goroutine. And the function runs independently and the main() function now
-runs concurrently.
-2.Hence, the second call is executed immediately and the
-program terminates without completing the first function call.
-3.Without completing "Process1",main terminated the application
-
-How to solve this ?
-*/
-
-/*
-
-Actual Output:
-Main Function Go Routine:Process 2
-
-Expected output:
-Own  Function Go Routine:Process 1
-Main Function Go Routine:Process 2
-
-Reason:Main is not waiting
-Solution:
-In a concurrent program, the main() is always a default goroutine.
-Other goroutines can not execute if the main() is not executing.
-
-So, in order to make sure that all the goroutines are executed before
-the main function ends, we sleep the process so that the other processes
-get a chance to execute.
-*/

@@ -1,13 +1,18 @@
 {
-  "name": "typescript",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "typescript-tutorial",
+  "version": "2.0.0",
+  "private": true,
+  "description": "TypeScript examples organised as chapters",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "check": "tsc",
+    "test": "node --test"
+  },
   "devDependencies": {
-    "ts-node": "^10.9.2"
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2"
   }
 }

@@ -1,10 +1,25 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES5",
-        "outDir": "bin",
-        "rootDir": "src",
-        "sourceMap": true,
-        "allowJs": true
-    }
+  // TypeScript only CHECKS these files; Node runs them directly (node file.ts),
+  // so nothing is compiled to JavaScript ("noEmit").
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "lib": ["esnext"],
+    "types": ["node"],
+
+    "noEmit": true,
+    "allowImportingTsExtensions": true, // import "./math.ts" with the .ts extension
+    "verbatimModuleSyntax": true,       // type-only imports must say "import type"
+    "moduleDetection": "force",         // every file is its own module: no clashing global names
+
+    "strict": true,                     // all strict checks (null checks, no implicit any ...)
+    "noUncheckedIndexedAccess": true,   // arr[i] might be undefined
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }

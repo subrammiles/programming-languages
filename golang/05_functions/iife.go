@@ -3,20 +3,20 @@ package main
 import "fmt"
 
 /*
-1.IIF or Immediately Invoked Function are those function which
-
-	can be defined and executed at the same time.
-
-2.One of the uses of the IIF function is when you don’t want to expose the logic of the function
-
-	either within or outside the package.
-
-3.This function won’t be available for calling either
-outside or within the package.
+An immediately invoked function: defined and called in one go.
+Useful to compute a value with a few statements, or to start a goroutine.
 */
-func iifFunction() {
+
+func immediatelyInvokedFunction() {
 	squareOf2 := func() int {
 		return 2 * 2
+	}() // the () calls it right away
+	fmt.Println(squareOf2) // 4
+
+	config := func() map[string]int {
+		m := map[string]int{"port": 8080}
+		m["timeout"] = 30
+		return m
 	}()
-	fmt.Println(squareOf2)
+	fmt.Println(config)
 }

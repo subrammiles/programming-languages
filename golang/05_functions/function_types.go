@@ -3,21 +3,26 @@ package main
 import "fmt"
 
 /*
-Just like we define our own struct types, it is possible to
-define our own function types.
-Eg:
-The code snippet below creates a new function type add which
-accepts two integer arguments and returns a integer.
-Now we can define variables of type add.
-type add func(a int, b int) int
+Functions are values with types, so you can name a function type:
+	type Operation func(a, b int) int
+and use it for variables, parameters, struct fields and map values.
 */
 
-type addTwoNumberType func(a int, b int) int
+type Operation func(a, b int) int
 
-func userDefinedFunctionType() {
-	var a addTwoNumberType = func(a int, b int) int {
-		return a + b
+func functionTypes() {
+	var add Operation = func(a, b int) int { return a + b }
+	fmt.Println("Sum", add(5, 6)) // Sum 11
+
+	ops := map[string]Operation{
+		"+": func(a, b int) int { return a + b },
+		"-": func(a, b int) int { return a - b },
+		"*": func(a, b int) int { return a * b },
 	}
-	s := a(5, 6)
-	fmt.Println("Sum", s)
+	for _, sym := range []string{"+", "-", "*"} {
+		fmt.Println("8", sym, "2 =", ops[sym](8, 2))
+	}
+
+	var missing Operation
+	fmt.Println(missing == nil) // true -> calling it would panic
 }

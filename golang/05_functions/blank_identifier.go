@@ -2,15 +2,21 @@ package main
 
 import "fmt"
 
-/*Function with 2 input  Parameter and 2 return values */
+/*
+_ is the blank identifier: "I don't need this value".
+Go refuses to compile unused variables, so _ is how you ignore a return value.
+*/
+
 func sumAndProductOfTwoNumbers() (int, int) {
-	return (2 + 2), (2 * 2)
+	return 2 + 2, 2 * 2
 }
 
-func useOfUnderScore() {
-	/*Let say we want only sum,but not product,we
-	can use _
-	*/
-	sum2, _ := sumAndProductOfTwoNumbers()
-	fmt.Println(sum2)
+func blankIdentifier() {
+	sum, _ := sumAndProductOfTwoNumbers()
+	fmt.Println(sum) // 4
+
+	for _, v := range []string{"a", "b"} {
+		fmt.Print(v)
+	}
+	fmt.Println()
 }

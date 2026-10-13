@@ -1,50 +1,74 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-func expressionSwitch(a int) {
-	/* It provides an easy way to dispatch execution to different parts of code based on the value of the expression.
-		switch optstatement; optexpression{
-	          case expression1: Statement..
-	          case expression2: Statement..
-	             ...
-	          default: Statement..
-	}
-	*/
-	switch day := a; day {
-	case 1:
-		fmt.Println("Sunday")
-	case 2:
-		fmt.Println("Monday")
+/*
+switch
+ - cases do NOT fall through (no break needed); use fallthrough to continue explicitly
+ - a case can list several values: case 1, 7:
+ - switch with no expression is a clean if/else-if chain
+ - a type switch checks the dynamic type of an interface value (see 12_interfaces)
+*/
+
+func expressionSwitch(day int) {
+	switch day {
+	case 1, 7:
+		fmt.Println(day, "-> weekend")
+	case 2, 3, 4, 5, 6:
+		fmt.Println(day, "-> weekday")
 	default:
-		fmt.Println("Good Day")
+		fmt.Println(day, "-> not a day")
 	}
 }
 
-func typeSwitch(myvalue interface{}) {
-	/*
-			Type switch is used when you want to compare types.
-			In this switch, the case contains the type which is going to
-			compare with the type present in the switch expression.
-		Syntax:
-		switch optstatement; typeswitchexpression{
-		case typelist 1: Statement..
-		case typelist 2: Statement..
-		...
-		default: Statement..
-		}
-	*/
-	//var myvalue interface{}
-	switch myvalue.(type) {
-	case bool:
-		fmt.Println("bool")
-	case string:
-		fmt.Println("string")
-	default:
-		fmt.Print("dynamic")
-	}
-}
-func switchInGo() {
+func switchExamples() {
+	expressionSwitch(1)
+	expressionSwitch(3)
 	expressionSwitch(8)
+
+	hour := 14
+	switch { // no expression: the first true case wins
+	case hour < 12:
+		fmt.Println("good morning")
+	case hour < 17:
+		fmt.Println("good afternoon") // good afternoon
+	default:
+		fmt.Println("good evening")
+	}
+
+	switch d := time.Saturday; d { // optional short statement
+	case time.Saturday, time.Sunday:
+		fmt.Println(d, "is a weekend")
+	}
+
+	switch 2 {
+	case 2:
+		fmt.Println("two")
+		fallthrough // also run the next case's body
+	case 3:
+		fmt.Println("three (via fallthrough)")
+	}
+}
+
+func typeSwitch(value any) {
+	switch v := value.(type) {
+	case bool:
+		fmt.Println("bool", v)
+	case string:
+		fmt.Println("string of length", len(v))
+	case int, float64:
+		fmt.Println("number", v)
+	default:
+		fmt.Printf("something else: %T\n", v)
+	}
+}
+
+func typeSwitchExamples() {
 	typeSwitch("subbu")
+	typeSwitch(true)
+	typeSwitch(3.5)
+	typeSwitch([]int{1})
 }

@@ -2,56 +2,37 @@ package main
 
 import "fmt"
 
+/*
+Go always passes arguments BY VALUE: the function gets a copy.
+To let a function change the caller's variable, pass a POINTER (&x) and use *p inside.
+*/
+
+func swapCopies(a, b int) {
+	a, b = b, a
+	fmt.Printf("inside swapCopies a=%d b=%d\n", a, b)
+}
+
+func swapThroughPointers(pa, pb *int) {
+	*pa, *pb = *pb, *pa
+	fmt.Printf("inside swapThroughPointers a=%d b=%d\n", *pa, *pb)
+}
+
 func callByValue() {
-	fmt.Println("<<<<<<<<<<Call by Value>>>>>>>>>>>>>>>")
-	/*
-		Call by value: : In this parameter passing method,
-		values of actual parameters are copied to function’s
-		formal parameters and the two types of parameters are stored
-		in different memory locations. So any changes made inside
-		functions are not reflected in actual parameters of the caller.
-	*/
-	a := 1
-	b := 2
-	swap(a, b)
-	fmt.Printf("After calling Swap function a = %d  and b= %d \n", a, b)
+	a, b := 1, 2
+	swapCopies(a, b)
+	fmt.Printf("after swapCopies a=%d b=%d\n", a, b) // a=1 b=2 -> unchanged
+
+	swapThroughPointers(&a, &b)
+	fmt.Printf("after swapThroughPointers a=%d b=%d\n", a, b) // a=2 b=1
 }
 
-func callByReference() {
-	fmt.Println("<<<<<<<<<<Call by Reference>>>>>>>>>>>>>>>")
-	/*
-		Call by reference: Both the actual and formal
-		parameters refer to the same locations, so any
-		changes made inside the function are actually reflected
-		in actual parameters of the caller.
-	*/
-	/*Actual parameters*/
-	a := 1
-	b := 2
-	swap2(&a, &b)
-	fmt.Printf("After calling Swap function a = %d  and b= %d \n", a, b)
-}
-
-// function which swap values
-func swap(a, b int) {
-	var temp int
-	temp = a
-	a = b
-	b = temp
-	fmt.Printf("Inside Swap function a = %d  and b= %d \n", a, b)
-}
-
-// function which swap values
-func swap2(p_a, p_b *int) {
-	var temp int
-	temp = *p_a
-	//Temp stores the pointer address of a
-	*p_a = *p_b
-	*p_b = temp
-	fmt.Printf("Inside Swap function a = %d  and b= %d \n", p_a, p_b)
-}
-
-func main() {
-	callByValue()
-	callByReference()
+func slicesShareTheirData() {
+	nums := []int{1, 2, 3}
+	double := func(s []int) {
+		for i := range s {
+			s[i] *= 2 // the copy of the slice header points at the SAME array
+		}
+	}
+	double(nums)
+	fmt.Println(nums) // [2 4 6]
 }

@@ -2,90 +2,44 @@ package main
 
 import "fmt"
 
-func functionWithIntegerArgument(myvar int) {
-	/*Syntax:
-	  <varible's name> int
-	*/
-	fmt.Println(myvar)
-}
+/*
+Any type can be a parameter: ints, strings, slices, maps, structs, channels, functions.
+All arguments are passed BY VALUE (copied). Slices, maps and channels contain
+pointers internally, so a function CAN change their contents (see call_by_value.go).
+*/
 
-func functionWithStringArgument(myvar string) {
-	/*Syntax:
-	  <varible's name > string
-	*/
-	fmt.Println(myvar)
-}
-
-func functionWithArrayArgument(myarray []int) {
-	/*Syntax:
-	  <varible's name> []dataDtype
-	*/
-	fmt.Println(myarray)
-}
-func functionWithMapArgument(myvar map[int]string) {
-	/*Syntax:
-	  <var name > map[<data type>]<data type>
-	*/
-	fmt.Println(myvar)
-}
-
-func functionWithStructArgument(myvar struct {
+func withInt(n int)            { fmt.Println("int:", n) }
+func withString(s string)      { fmt.Println("string:", s) }
+func withSlice(values []int)   { fmt.Println("slice:", values) }
+func withMap(m map[int]string) { fmt.Println("map:", m) }
+func withStruct(p struct {
 	name string
 	age  int
-}) {
-	/*Syntax:
-	  <var name > struct{}
-	*/
-	fmt.Println(myvar)
-}
-func functionWithChannelArgument(mychannel <-chan int) {
-	/*Syntax: Receive channel
-	func serve(mychannel <-chan SomeType) { //do stuff }
-	*/
-	//Get data from a channle and assign it to varible
-	x := <-mychannel
-	fmt.Println(x)
-	y := <-mychannel
-	fmt.Println(y)
-	z := <-mychannel
-	fmt.Println(z)
+}) { fmt.Println("struct:", p) }
+
+// <-chan int means "receive-only channel"
+func withChannel(ch <-chan int) {
+	for v := range ch {
+		fmt.Println("from channel:", v)
+	}
 }
 
-func functionArgumentsTesting() {
-	/*Integer*/
-	functionWithIntegerArgument(2)
-	/*String*/
-	functionWithStringArgument("Subbu")
-	/*Map*/
-	mymap := map[int]string{
-		1: "subbu", 2: "gabbu",
-	}
-	functionWithMapArgument(mymap)
-	/*Array*/
-	x := []int{1, 2, 3}
-	functionWithArrayArgument(x)
-	/*struct*/
-	mystruct := struct {
+func argumentTypes() {
+	withInt(2)
+	withString("Subbu")
+	withSlice([]int{1, 2, 3})
+	withMap(map[int]string{1: "subbu", 2: "gabbu"})
+	withStruct(struct {
 		name string
 		age  int
-	}{
-		name: "subbu",
-		age:  12,
-	}
-	functionWithStructArgument(mystruct)
-	/*channel*/
-	/*   //Sending to channel
-		func serve(ch <-chan SomeType) { //do stuff }
-		//Writing to channel
-	    func serve(ch chan<- SomeType) { //do stuff }
-	*/
-	myIntChannel := make(chan int)
-	//We are sending data to vhannel
+	}{name: "subbu", age: 12})
+
+	ch := make(chan int)
 	go func() {
-		myIntChannel <- 100
-		myIntChannel <- 1000
-		myIntChannel <- 10000
-		myIntChannel <- 100000
+		for _, v := range []int{100, 1000, 10000} {
+			ch <- v
+		}
+		close(ch) // lets the range loop in withChannel finish
 	}()
-	functionWithChannelArgument(myIntChannel)
+	withChannel(ch)
 }

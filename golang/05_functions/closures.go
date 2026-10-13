@@ -1,33 +1,33 @@
-/*
-
-Go closure is a nested function that allows us to
- access variables of the outer function even after the
- outer function is closed.
-*/
-
 package main
 
 import "fmt"
 
-// outer function
-func greet() func() string {
+/*
+A closure is a function that uses variables from the function that created it.
+Those variables live on as long as the closure does.
+*/
 
-	// variable defined outside the inner function
+func greeter() func() string {
 	name := "John"
-
-	// return a nested anonymous function
 	return func() string {
-		name = "Hi " + name
+		name = "Hi " + name // changes the captured variable
 		return name
 	}
 }
 
-func main() {
+func counter() func() int {
+	count := 0
+	return func() int {
+		count++
+		return count
+	}
+}
 
-	// call the outer function
-	message := greet()
+func closures() {
+	message := greeter()
+	fmt.Println(message()) // Hi John
+	fmt.Println(message()) // Hi Hi John -> the same name variable each time
 
-	// call the inner function
-	fmt.Println(message())
-
+	c1, c2 := counter(), counter()
+	fmt.Println(c1(), c1(), c1(), c2()) // 1 2 3 1 -> each closure has its own count
 }

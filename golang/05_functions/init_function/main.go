@@ -1,37 +1,30 @@
-// Declaration of the main package
+// init functions run automatically, before main, when a package is initialised.
+//
+//		go run ./05_functions/init_function
+//
+//	  - no arguments, no return values, cannot be called by name
+//	  - a package may have several; they run in the order they appear
+//	    (files in name order); imported packages initialise first
+//	  - use them for setup that can't be a simple variable initialiser
 package main
 
-/*
-
-init() function is just like the main function, does not take any
-argument nor return anything.
-
-This function is present in every package
-and this function is called when the package is initialized.
-This function is declared implicitly, so you cannot reference it
-from anywhere and you are allowed to create multiple init() function in
-the same program and they execute in the order they are created.
-You are allowed to create init() function anywhere in the program and
-they are called in lexical file name order (Alphabetical Order).
-And allowed to put statements if the init() function, but
-always remember to init() function is executed before the main()
-function call, so it does not depend to main() function.
-The main purpose of the init() function is to initialize the global
-variables that cannot be initialized in the global context.
-*/
-// Importing package
 import "fmt"
 
-// Multiple init() function
-func init() {
-	fmt.Println("Welcome to init() function")
+var config = loadConfig() // package variables are initialised before init()
+
+func loadConfig() string {
+	fmt.Println("1. package variables are initialised")
+	return "production"
 }
 
 func init() {
-	fmt.Println("Hello! init() function")
+	fmt.Println("2. first init()")
 }
 
-// Main function
+func init() {
+	fmt.Println("3. second init()")
+}
+
 func main() {
-	fmt.Println("Welcome to main() function")
+	fmt.Println("4. main(), config =", config)
 }

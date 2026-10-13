@@ -55,7 +55,9 @@ func integerOverflowAndDivision() {
 	fmt.Println(small) // -128 -> wraps around silently
 
 	fmt.Println(7/2, 7.0/2, 7%2, -7/2) // 3 3.5 1 -3 -> integer division truncates toward zero
-	fmt.Println(0.1+0.2 == 0.3)        // false -> floats are approximate
+	x, y := 0.1, 0.2
+	fmt.Println(x+y == 0.3, x+y) // false 0.30000000000000004 -> float64 values are approximate
+	fmt.Println(0.1+0.2 == 0.3)  // true -> but CONSTANT arithmetic is exact, done by the compiler
 }
 
 func nilValues() {

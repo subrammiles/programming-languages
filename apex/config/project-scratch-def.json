@@ -1,0 +1,10 @@
+{
+  "orgName": "Apex Tutorial",
+  "edition": "Developer",
+  "features": [],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    }
+  }
+}

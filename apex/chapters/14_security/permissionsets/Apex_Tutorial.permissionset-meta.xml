@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Grants access to the Course__c object and its fields.
+  Deploying an object does not give anyone access to its fields, so assign this to yourself once:
+    (run the "sf org assign permset" command shown in the README)
+  Code in this project uses USER_MODE, which respects these permissions.
+-->
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>CourseRestResource</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>Access to the Course object used by the Apex tutorial</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Course_Completed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Course__c.Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Apex Tutorial</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>Course__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+</PermissionSet>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A custom object used by chapters 07-10. Deploying this project creates it in your org. -->
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Course</label>
+    <pluralLabel>Courses</pluralLabel>
+    <nameField>
+        <label>Course Name</label>
+        <type>Text</type>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <enableActivities>false</enableActivities>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+</CustomObject>

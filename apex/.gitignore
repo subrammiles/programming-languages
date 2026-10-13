@@ -1,0 +1,4 @@
+# Salesforce CLI local state
+.sf/
+.sfdx/
+.localdevserver/

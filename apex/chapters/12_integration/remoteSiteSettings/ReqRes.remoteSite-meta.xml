@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Allows Apex to call https://reqres.in. Without it the callout fails with "Unauthorized endpoint". -->
+<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Free test API used by ReqResClient</description>
+    <disableProtocolSecurity>false</disableProtocolSecurity>
+    <isActive>true</isActive>
+    <url>https://reqres.in</url>
+</RemoteSiteSetting>

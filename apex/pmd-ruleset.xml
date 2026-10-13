@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Static analysis rules for this project (PMD).
+  Run:  pmd check -d chapters -R pmd-ruleset.xml
+  The VS Code "Apex PMD" extension can use this file too.
+  Debug-statement rules are switched off: this is learning code that prints its results.
+-->
+<ruleset name="Apex tutorial"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+  <description>Error-prone, performance, security and best-practice rules</description>
+  <rule ref="category/apex/errorprone.xml"/>
+  <rule ref="category/apex/performance.xml">
+    <exclude name="AvoidDebugStatements"/>
+  </rule>
+  <rule ref="category/apex/security.xml"/>
+  <rule ref="category/apex/bestpractices.xml">
+    <exclude name="DebugsShouldUseLoggingLevel"/>
+    <!-- Good habits for production code, but noisy in short teaching examples: -->
+    <exclude name="ApexAssertionsShouldIncludeMessage"/>
+    <exclude name="ApexUnitTestClassShouldHaveRunAs"/>
+    <exclude name="ApexUnitTestClassShouldHaveRunRelevantTestsAnnotation"/>
+  </rule>
+</ruleset>

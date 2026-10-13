@@ -1,0 +1,11 @@
+{
+  "packageDirectories": [
+    {
+      "path": "chapters",
+      "default": true
+    }
+  ],
+  "name": "apex-tutorial",
+  "namespace": "",
+  "sourceApiVersion": "65.0"
+}

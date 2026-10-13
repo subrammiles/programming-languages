@@ -1,0 +1,5 @@
+# Files the Salesforce CLI should NOT try to deploy
+**/scripts/**
+**/*.md
+**/.eslintrc.json
+**/jsconfig.json

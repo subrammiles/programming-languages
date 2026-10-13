@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Web Worker</title>
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #spinner { width: 40px; height: 40px; border: 6px solid #ccc; border-top-color: steelblue;
+               border-radius: 50%; animation: spin 1s linear infinite; }
+  </style>
+</head>
+<body>
+  <p>Watch the spinner: if it freezes, the main thread is blocked.</p>
+  <div id="spinner"></div>
+  <button id="main">Count primes on the MAIN thread</button>
+  <button id="worker">Count primes in a WORKER</button>
+  <p id="result"></p>
+
+  <script>
+    /*
+    Must be served over http (e.g. `npx serve .`); file:// will not load workers.
+    */
+    const result = document.getElementById("result");
+    const LIMIT = 5_000_000;
+
+    function countPrimes(limit) {
+      let count = 0;
+      for (let n = 2; n <= limit; n++) {
+        let isPrime = true;
+        for (let d = 2; d * d <= n; d++) if (n % d === 0) { isPrime = false; break; }
+        if (isPrime) count++;
+      }
+      return count;
+    }
+
+    document.getElementById("main").addEventListener("click", () => {
+      result.textContent = "working... (page is frozen)";
+      setTimeout(() => {
+        const start = performance.now();
+        const count = countPrimes(LIMIT);// blocks: spinner stops, buttons don't respond
+        result.textContent = `main thread: ${count} primes in ${Math.round(performance.now() - start)}ms`;
+      }, 50);
+    });
+
+    const worker = new Worker("worker.js");
+    worker.onmessage = (event) => {
+      result.textContent = `worker: ${event.data.count} primes in ${event.data.ms}ms`;
+    };
+    document.getElementById("worker").addEventListener("click", () => {
+      result.textContent = "working in a worker... (spinner keeps moving)";
+      worker.postMessage(LIMIT);
+    });
+  </script>
+</body>
+</html>

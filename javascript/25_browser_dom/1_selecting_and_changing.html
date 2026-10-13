@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Selecting and changing elements</title>
+  <style>
+    .highlight { background: yellow; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1 id="title">Hello DOM</h1>
+  <ul id="fruits">
+    <li class="fruit">Apple</li>
+    <li class="fruit">Banana</li>
+    <li class="fruit">Mango</li>
+  </ul>
+  <p class="note">This note will be hidden.</p>
+  <div id="output"></div>
+
+  <script>
+    /*
+    The DOM (Document Object Model) is the page as a tree of JS objects.
+    Selecting:
+      document.querySelector(css)     -> first match (or null)
+      document.querySelectorAll(css)  -> NodeList of all matches
+      document.getElementById(id)
+    */
+    const title = document.querySelector("#title");
+    const fruits = document.querySelectorAll(".fruit");
+    console.log(title.textContent);// Hello DOM
+    console.log(fruits.length);// 3
+
+    // Changing text. Prefer textContent over innerHTML for user data:
+    // innerHTML parses HTML, so untrusted input can inject scripts (XSS).
+    title.textContent = "Hello DOM (changed by JS)";
+
+    // Classes
+    fruits[1].classList.add("highlight");
+    document.querySelector(".note").classList.toggle("hidden");
+    console.log(fruits[1].classList.contains("highlight"));// true
+
+    // Inline styles and attributes
+    title.style.color = "steelblue";
+    title.setAttribute("data-version", "2");
+    console.log(title.dataset.version);// "2" -> data-* attributes via dataset
+
+    // Creating and adding elements
+    const li = document.createElement("li");
+    li.textContent = "Grapes";
+    li.className = "fruit";
+    document.querySelector("#fruits").append(li);
+
+    // Removing
+    fruits[0].remove();// Apple is gone
+
+    // NodeList supports forEach (and for...of)
+    document.querySelectorAll(".fruit").forEach((el, i) => {
+      el.textContent = `${i + 1}. ${el.textContent}`;
+    });
+
+    // Walking the tree
+    const list = document.querySelector("#fruits");
+    console.log(list.children.length);// 3
+    console.log(list.firstElementChild.textContent);// 1. Banana
+    console.log(list.parentElement.tagName);// BODY
+    console.log(li.closest("ul").id);// fruits -> nearest ancestor matching a selector
+
+    document.querySelector("#output").textContent =
+      "Open DevTools (F12) to see the console output.";
+  </script>
+</body>
+</html>

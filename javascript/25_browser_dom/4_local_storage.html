@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>localStorage</title>
+</head>
+<body>
+  <label>Your name: <input id="name"></label>
+  <label><input type="checkbox" id="dark"> Dark mode</label>
+  <p id="visits"></p>
+  <button id="clear">Clear storage</button>
+
+  <script>
+    /*
+    localStorage   -> saved in the browser forever (until cleared), per website
+    sessionStorage -> cleared when the tab is closed
+    Both store STRINGS only (~5MB). Use JSON for objects.
+      setItem(key, value), getItem(key) -> string or null, removeItem(key), clear()
+    Never store passwords or tokens here: any script on the page can read it.
+    */
+
+    // Remember text input
+    const nameInput = document.getElementById("name");
+    nameInput.value = localStorage.getItem("name") ?? "";
+    nameInput.addEventListener("input", () => localStorage.setItem("name", nameInput.value));
+
+    // Store an object as JSON
+    const defaults = { dark: false };
+    const prefs = JSON.parse(localStorage.getItem("prefs")) ?? defaults;
+    const darkBox = document.getElementById("dark");
+    darkBox.checked = prefs.dark;
+    applyTheme();
+    darkBox.addEventListener("change", () => {
+      prefs.dark = darkBox.checked;
+      localStorage.setItem("prefs", JSON.stringify(prefs));
+      applyTheme();
+    });
+    function applyTheme() {
+      document.body.style.background = prefs.dark ? "#222" : "#fff";
+      document.body.style.color = prefs.dark ? "#eee" : "#000";
+    }
+
+    // Count visits: numbers come back as strings
+    const visits = Number(localStorage.getItem("visits") ?? 0) + 1;
+    localStorage.setItem("visits", visits);
+    document.getElementById("visits").textContent = `You have opened this page ${visits} times. Reload to see it go up.`;
+
+    document.getElementById("clear").addEventListener("click", () => {
+      localStorage.clear();
+      location.reload();
+    });
+
+    // The "storage" event fires in OTHER tabs when storage changes
+    window.addEventListener("storage", (e) => console.log(`${e.key} changed in another tab`));
+  </script>
+</body>
+</html>

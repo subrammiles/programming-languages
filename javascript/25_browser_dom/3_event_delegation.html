@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Event delegation</title>
+  <style>
+    div { padding: 12px; margin: 6px; border: 2px solid #888; }
+    .done { text-decoration: line-through; color: gray; }
+  </style>
+</head>
+<body>
+  <h3>1. Bubbling</h3>
+  <div id="outer">outer
+    <div id="middle">middle
+      <div id="inner">inner (click me)</div>
+    </div>
+  </div>
+
+  <h3>2. Delegation</h3>
+  <ul id="tasks">
+    <li>Learn the DOM <button data-action="done">done</button> <button data-action="delete">delete</button></li>
+    <li>Learn events <button data-action="done">done</button> <button data-action="delete">delete</button></li>
+  </ul>
+  <button id="add">Add task</button>
+
+  <script>
+    /*
+    Bubbling: an event on an element first runs its handlers,
+    then its parent's, then the grandparent's... all the way to document.
+
+    Event delegation: instead of a listener on every child,
+    put ONE listener on the parent and check event.target.
+    It also works for children added later.
+    */
+
+    // 1. Bubbling - click "inner" and watch the console
+    for (const id of ["outer", "middle", "inner"]) {
+      document.getElementById(id).addEventListener("click", (event) => {
+        console.log(`${id} handler (target: ${event.target.id}, currentTarget: ${event.currentTarget.id})`);
+      });
+    }
+    // inner handler ..., middle handler ..., outer handler ...
+    // event.target        = where the click happened (always inner)
+    // event.currentTarget = element whose handler is running now
+    // event.stopPropagation() would stop it from bubbling further
+
+    // 2. Delegation - one listener for all buttons, even future ones
+    const tasks = document.getElementById("tasks");
+    tasks.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;// clicked somewhere else in the list
+      const li = button.closest("li");
+      if (button.dataset.action === "done") li.classList.toggle("done");
+      if (button.dataset.action === "delete") li.remove();
+    });
+
+    let n = 3;
+    document.getElementById("add").addEventListener("click", () => {
+      const li = document.createElement("li");
+      li.innerHTML = `Task ${n++} <button data-action="done">done</button> <button data-action="delete">delete</button>`;
+      tasks.append(li);// its buttons work with no extra listeners
+    });
+  </script>
+</body>
+</html>

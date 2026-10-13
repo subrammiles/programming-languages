@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Events</title>
+</head>
+<body>
+  <button id="btn">Click me</button>
+  <p>Clicked <span id="count">0</span> times</p>
+
+  <form id="signup">
+    <input name="email" type="email" placeholder="email" required>
+    <button>Sign up</button>
+  </form>
+  <p id="form-result"></p>
+
+  <input id="search" placeholder="type here...">
+  <p>You typed: <span id="typed"></span></p>
+
+  <p>Press any key (try Ctrl+S)</p>
+  <p id="key"></p>
+
+  <script>
+    /*
+    element.addEventListener(type, handler, options)
+    The handler receives an Event object with details:
+      event.target          -> element that triggered it
+      event.preventDefault()-> stop the browser's default action
+    Common types: click, input, change, submit, keydown, mouseover, scroll, DOMContentLoaded
+    */
+
+    // click
+    let count = 0;
+    document.querySelector("#btn").addEventListener("click", (event) => {
+      count++;
+      document.querySelector("#count").textContent = count;
+      console.log("clicked", event.target);
+    });
+
+    // submit: by default the browser reloads the page, so prevent it
+    document.querySelector("#signup").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      document.querySelector("#form-result").textContent =
+        `Signed up: ${data.get("email")}`;
+    });
+
+    // input: fires on every keystroke
+    document.querySelector("#search").addEventListener("input", (event) => {
+      document.querySelector("#typed").textContent = event.target.value;
+    });
+
+    // keydown on the whole document
+    document.addEventListener("keydown", (event) => {
+      if (event.ctrlKey && event.key === "s") {
+        event.preventDefault();// stop the browser's "save page" dialog
+        document.querySelector("#key").textContent = "Ctrl+S intercepted!";
+        return;
+      }
+      document.querySelector("#key").textContent = `key: ${event.key}, code: ${event.code}`;
+    });
+
+    // once: listener removes itself after the first call
+    document.querySelector("#btn").addEventListener(
+      "click",
+      () => console.log("first click only"),
+      { once: true }
+    );
+
+    // Removing a listener needs the SAME function reference
+    function onResize() { console.log("width:", window.innerWidth); }
+    window.addEventListener("resize", onResize);
+    // window.removeEventListener("resize", onResize);
+  </script>
+</body>
+</html>

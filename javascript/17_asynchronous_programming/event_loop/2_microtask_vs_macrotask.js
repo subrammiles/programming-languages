@@ -30,10 +30,13 @@ console.log("3. sync end");
 // Why: all synchronous code runs first, then ALL microtasks, then ONE macrotask.
 // setTimeout(fn, 0) does not mean "now"; it means "after the current microtasks".
 
-console.log("<<<< microtasks added by microtasks also run before timers >>>>");
-setTimeout(() => console.log("timer B"), 0);
-Promise.resolve()
-  .then(() => console.log("then 1"))
-  .then(() => console.log("then 2"))
-  .then(() => console.log("then 3"));
-// then 1, then 2, then 3 all print before "timer B"
+// Run the second demo after the first has finished
+setTimeout(() => {
+  console.log("<<<< microtasks added by microtasks also run before timers >>>>");
+  setTimeout(() => console.log("timer B"), 0);
+  Promise.resolve()
+    .then(() => console.log("then 1"))
+    .then(() => console.log("then 2"))
+    .then(() => console.log("then 3"));
+  // then 1, then 2, then 3 all print before "timer B"
+}, 50);

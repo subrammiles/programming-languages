@@ -39,14 +39,16 @@ In VS Code with the Go extension, open any file and press F5 ("Launch Package").
 | 08 | [Strings](08_strings) | the `strings` package, bytes vs runes, UTF-8, `strings.Builder`, `fmt` verbs |
 | 09 | [Pointers](09_pointers) | `&`, `*`, `new`, nil, pointers to structs |
 | 10 | [Structs](10_structs) | structs, anonymous structs, embedding, tags |
-| 11 | [Methods](11_methods) | receivers, value vs pointer receivers, methods on any type |
+| 11 | [Methods](11_methods) | receivers, value vs pointer receivers, methods on any type, method values and expressions, method sets |
 | 12 | [Interfaces](12_interfaces) | implicit interfaces, `any`, type assertions, `Stringer`, `io.Reader` / `Writer`, the nil gotcha |
 | 13 | [Errors](13_errors) | error values, wrapping, `errors.Is` / `As` / `AsType`, custom errors, `panic` / `recover` |
 | 14 | [Generics](14_generics) | type parameters, constraints, generic types, generic methods (1.27) |
 | 15 | [Packages and modules](15_packages_and_modules) | packages, exported names, `internal/`, `go.mod` |
-| 16 | [Concurrency](16_concurrency) | goroutines, WaitGroups, channels, `select`, worker pools, mutexes, pipelines |
+| 16 | [Concurrency](16_concurrency) | goroutines, WaitGroups, channels, `select`, worker pools, mutexes, pipelines, semaphores, error groups, `sync.Cond` / `Pool` / `Map`, rate limiting, graceful shutdown |
 | 17 | [Context](17_context) | cancellation, timeouts, request values |
 | 18 | [Iterators](18_iterators) | range over functions, `iter.Seq`, composing iterators |
-| 19 | [Standard library](19_standard_library) | `time`, files, JSON (and json/v2), `net/http`, `slog`, `regexp`, `embed`, `os/exec` |
+| 19 | [Standard library](19_standard_library) | `time`, files, JSON (and json/v2), `net/http`, `slog`, `regexp`, `embed`, `os/exec`, `flag` and `bufio` input, `container/heap` / `list` / `ring`, sorting and searching, `reflect`, `math/big`, templates, CSV |
 | 20 | [Testing](20_testing) | table tests, subtests, benchmarks, fuzzing, examples, `synctest` |
 | 21 | [What's new](21_whats_new) | Go 1.18 → 1.27, version by version |
+| 22 | [Design patterns](22_design_patterns) | functional options, singleton (`sync.Once`), builder, factory, strategy, observer, middleware, dependency injection, adapter |
+| 23 | [Interview questions](23_interview_questions) | string, number and slice programs, sorting, linked list / BST / LRU cache / graph, concurrency exercises, "predict the output" gotchas |

@@ -11,5 +11,7 @@ func main() {
 		{Name: "function vs method", Run: functionVsMethod},
 		{Name: "methods on any type", Run: methodsOnAnyType},
 		{Name: "pointer vs value receivers", Run: pointerVsValueReceiver},
+		{Name: "method values and expressions", Run: methodValues},
+		{Name: "method sets", Run: methodSets},
 	})
 }

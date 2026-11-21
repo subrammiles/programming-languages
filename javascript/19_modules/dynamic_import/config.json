@@ -1,0 +1,4 @@
+{
+  "appName": "demo",
+  "features": ["search", "export"]
+}

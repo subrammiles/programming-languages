@@ -20,6 +20,8 @@ Python comes "batteries included". A selection of the modules you'll use most:
 | `n_sqlite3.py` | `sqlite3` |
 | `o_urllib_and_http.py` | `urllib`, `http.server` |
 | `p_tomllib_and_configparser.py` | `tomllib`, `configparser` |
+| `q_introspection.py` | `inspect`, `dis`, `dir` / `vars` / `getattr` |
+| `r_sockets.py` | `socket`, `socketserver`, message framing with `struct` |
 
 Collections, itertools, functools, pathlib, json and csv are covered in their own chapters.
 Full list: https://docs.python.org/3/library/

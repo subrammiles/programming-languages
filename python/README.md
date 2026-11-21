@@ -24,7 +24,7 @@ In chapters 07 and 19, run the files from inside their folder (the READMEs say h
 | #  | Chapter | Topics |
 |----|---------|--------|
 | 00 | [Getting started](00_getting_started) | running Python, the REPL, `print`, `input`, comments |
-| 01 | [Variables and data types](01_variables_and_data_types) | variables, identity, numbers, booleans and truthiness, type conversion, `None` |
+| 01 | [Variables and data types](01_variables_and_data_types) | variables, identity, numbers, booleans and truthiness, type conversion, `None`, reference counting, garbage collection, `weakref` |
 | 02 | [Operators](02_operators) | arithmetic, comparison, logical, `is` vs `==`, membership, bitwise, walrus `:=`, precedence |
 | 03 | [Strings](03_strings) | slicing, methods, f-strings and format specs, Unicode and bytes, t-strings (3.14) |
 | 04 | [Control flow](04_control_flow) | `if`, `for`, `while`, `break` / `continue`, loop `else`, `pass`, `match` / `case` |
@@ -33,15 +33,17 @@ In chapters 07 and 19, run the files from inside their folder (the READMEs say h
 | 07 | [Modules and packages](07_modules_and_packages) | `import`, packages, `__name__ == "__main__"`, `sys.path`, `lazy import` (3.15) |
 | 08 | [Exceptions](08_exceptions) | `try` / `except` / `else` / `finally`, `raise`, custom exceptions, chaining, exception groups |
 | 09 | [File handling](09_file_handling) | reading and writing, `pathlib`, JSON, CSV, binary and pickle, `shutil` |
-| 10 | [Object-oriented programming](10_oop) | classes, constructors, inheritance, `super`, MRO, encapsulation, ABCs, properties, dunder methods |
-| 11 | [Iterators and generators](11_iterators_and_generators) | iterator protocol, `yield`, generator expressions, pipelines |
+| 10 | [Object-oriented programming](10_oop) | classes, constructors, inheritance, `super`, MRO, encapsulation, ABCs, properties, dunder methods, `__eq__` / `__hash__`, `__getattr__`, `cached_property`, descriptors, `__new__`, `__init_subclass__`, metaclasses |
+| 11 | [Iterators and generators](11_iterators_and_generators) | iterator protocol, `yield`, generator expressions, pipelines, `send` / `throw` / `close` |
 | 12 | [Decorators and context managers](12_decorators_and_context_managers) | writing decorators, `functools.cache`, `with`, `contextlib` |
 | 13 | [Functional programming](13_functional_programming) | `functools`, `itertools`, `operator`, pure functions |
 | 14 | [Dataclasses and enums](14_dataclasses_and_enums) | `@dataclass`, frozen/slots/kw_only, `Enum`, `StrEnum`, `Flag`, `NamedTuple` |
 | 15 | [Type hints](15_type_hints) | annotations, unions, `TypedDict`, `Protocol`, generics `def f[T]`, `TypeIs`, lazy annotations |
-| 16 | [Concurrency](16_concurrency) | threads, locks, thread/process pools, the GIL and free-threading, subinterpreters |
-| 17 | [asyncio](17_asyncio) | `async` / `await`, tasks, `TaskGroup`, timeouts, async iterators, semaphores |
-| 18 | [Standard library](18_standard_library) | `os`, `datetime`, `re`, `logging`, `argparse`, `subprocess`, `sqlite3`, `decimal` and more |
+| 16 | [Concurrency](16_concurrency) | threads, locks, `Event` / `Condition` / `Semaphore` / `Barrier`, `threading.local`, thread/process pools, the GIL and free-threading, subinterpreters |
+| 17 | [asyncio](17_asyncio) | `async` / `await`, tasks, `TaskGroup`, timeouts, async iterators, semaphores, `contextvars` |
+| 18 | [Standard library](18_standard_library) | `os`, `datetime`, `re`, `logging`, `argparse`, `subprocess`, `sqlite3`, `decimal`, `inspect` / `dis`, sockets and more |
 | 19 | [Testing](19_testing) | `unittest`, `pytest`, fixtures, mocking, doctest |
 | 20 | [Virtual environments and packaging](20_virtual_environments_and_packaging) | `venv`, `pip`, `uv`, `pyproject.toml`, an installable package |
 | 21 | [What's new](21_whats_new) | Python 3.10 → 3.15, version by version |
+| 22 | [Design patterns](22_design_patterns) | singleton, factory, builder, registry, decorator, adapter, facade, proxy, composite, strategy, observer, command, template method, state, dependency injection |
+| 23 | [Interview questions](23_interview_questions) | string, number and list programs, sorting, linked list / BST / LRU / heap / trie / graph, "Pythonic" questions, "predict the output" gotchas, concurrency programs |

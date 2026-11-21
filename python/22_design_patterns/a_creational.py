@@ -66,7 +66,7 @@ for kind in ("email", "sms", "pigeon"):
     except ValueError as e:
         print(e)
 # email to ann: Your order has shipped
-# sms to ann: Your order has shipped
+# sms to ann: Your order has shipp
 # unknown notifier 'pigeon'
 
 
